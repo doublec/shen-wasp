@@ -109,7 +109,8 @@
       (print "Compiling ") (print file) (print "\n")
       (write-lisp-file (string-append "compiled/" file ".ms") (map kl->wasp (read-kl-file (string-append "kl/" file))))
       (waspc (string-append "compiled/" file ".ms")))
-    files))
+    files)
+  (waspc "overwrites-internal.ms"))
 
 (define (eval-all)
   (define files '("toplevel.kl"
