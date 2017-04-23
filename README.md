@@ -15,6 +15,15 @@ The reason for this port is that I use Wasp Lisp in some projects and wanted to 
 
 This port is heavily based on the [Shen Scheme](https://github.com/tizoc/shen-scheme) implementation. Much of the code is ported from Scheme to Wasp Lisp and the structure is kept the same. The license for code I wrote is the same as the Shen Scheme License, BSD3-Clause.
 
+## Binaries
+
+The following compiled binaries are available:
+
+* [shen_static.bz2](https://bluishcoder.co.nz/shen/shen_static.bz2). This is a static 64-bit linux binary with no dependancies. It should run on any 64-bit Linux system. Decompress with:
+      $ bunzip2 shen_static.bz2
+      $ chmod +x shen_static
+      $ ./shen_static
+
 ## Building
 
 First step, build the fork of Wasp Lisp needed to run:
@@ -123,6 +132,16 @@ Wasp binaries are a small Wasp VM stub plus the compiled Lisp code appended to i
     $ waspc -exe shen -platform win32-stub shen.ms
 
 Wasp can be built for [Android](https://bluishcoder.co.nz/2013/05/09/building-wasp-lisp-and-mosref-for-android.html) and [static binaries via musl](https://bluishcoder.co.nz/2016/06/05/building-static-wasp-lisp-binaries.html) are possible.
+
+I've made the following stubs available for building binaries for other systems:
+
+* [Musl 64-bit Linux static stub](https://bluishcoder.co.nz/shen/waspvm-static-linux-x86_64.bz2)
+* [64-bit Linux stub](https://bluishcoder.co.nz/shen/waspvm-linux-x86_64.bz2)
+
+Decompress them and copy into the `lib/waspvm-stubs` directory where Wasp Lisp was installed. Shen can then be built on your platform for 64 bit linux, or 64 bit Linux static binaries with:
+
+    $ waspc -exe shen -platform linux-x86_64 shen.ms
+    $ waspc -exe shen_static -platform static-linux-x86_64 shen.ms
 
 ## Current Port State
 
