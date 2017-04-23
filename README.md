@@ -27,7 +27,7 @@ Follow the prompts for the location to install the wasp lisp binaries and add th
 
     $ export PATH=$PATH:/path/to/install/bin
 
-Shen is provided in source code format from the [Shen Sources](https://github.com/Shen-Language/shen-sources) github repository. The code is written in Shen. It needs a working Shen system to compile that code to [KLambda](http://www.shenlanguage.org/learn-shen/shendoc.htm#The%20Primitive%20Functions%20of%20K%20Lambda), a small Lisp subset that Shen uses as a virtual machine. This KLamda code can be found in the `kl` directory in this repository. These KLambda files are compiled to Wasp Lisp and stored as compiled code in the `compiled` directory. The repsitory includes a recent version of these files. To generate, or re-generate, run the following commands:
+Shen is provided in source code format from the [Shen Sources](https://github.com/Shen-Language/shen-sources) github repository. The code is written in Shen. It needs a working Shen system to compile that code to [KLambda](http://www.shenlanguage.org/learn-shen/shendoc.htm#The%20Primitive%20Functions%20of%20K%20Lambda), a small Lisp subset that Shen uses as a virtual machine. This KLamda code can be found in the `kl` directory in this repository. These KLambda files are compiled to Wasp Lisp and stored as compiled code in the `compiled` directory. The repository includes a recent version of these files. To generate, or re-generate, run the following commands:
 
     $ rlwrap wasp
     >> (import "driver")
@@ -80,13 +80,13 @@ Shen can be run and debugged from the Wasp REPL. To load the compiled code and r
 
     (0-)
 
-When developing on the compiler it's useful to use `eval-all` instead of `load-all`. This will load the KLambda files, compile then to Scheme and `eval` them:
+When developing on the compiler it's useful to use `eval-all` instead of `load-all`. This will load the KLambda files, compile them to Scheme and `eval` them:
 
     >> (eval-all)
     >> (kl:shen)
     ...
 
-A single input like of Shen can be entered and run, returning to the Wasp REPL with:
+A single input line of Shen can be entered and run, returning to the Wasp REPL with:
 
     >> (kl:shen.read-evaluate-print) 
     (+ 1 2)
