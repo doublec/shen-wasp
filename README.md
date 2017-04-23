@@ -19,10 +19,11 @@ This port is heavily based on the [Shen Scheme](https://github.com/tizoc/shen-sc
 
 The following compiled binaries are available:
 
-* [shen_static.bz2](https://bluishcoder.co.nz/shen/shen_static.bz2). This is a static 64-bit linux binary with no dependancies. It should run on any 64-bit Linux system. Decompress with:
-      $ bunzip2 shen_static.bz2
-      $ chmod +x shen_static
-      $ ./shen_static
+[shen_static.bz2](https://bluishcoder.co.nz/shen/shen_static.bz2). This is a static 64-bit linux binary with no dependancies. It should run on any 64-bit Linux system.  Decompress with:
+
+    $ bunzip2 shen_static.bz2
+    $ chmod +x shen_static
+    $ ./shen_static
 
 ## Building
 
