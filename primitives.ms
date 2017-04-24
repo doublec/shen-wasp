@@ -20,9 +20,13 @@
 
 (define (write-u8 byte out)
   (define out (car out))
-  (send (make-string 1 byte) out)
-  (if (or (= byte 13) (= byte 10))
-    (pause)))
+  (cond
+    ((file? out) (write-file out (make-string 1 byte)))
+    (else
+      (send (make-string 1 byte) out)
+      (if (or (= byte 13) (= byte 10))
+        (pause))))
+  out)
 
 (define (read-u8 in)
   (define input-buffer (cdr in))
