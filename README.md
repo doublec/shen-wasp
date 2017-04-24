@@ -131,9 +131,7 @@ Shen allows introspecting compiled Shen functions and examining the KLambda code
 
 ## Cross Compilation
 
-Wasp binaries are a small Wasp VM stub plus the compiled Lisp code appended to it. This makes building for other platforms easy as long as you have the stub for that platform. Given a Windows stub in the correct location you can build a Windows binary with:
-
-    $ waspc -exe shen -platform win32-stub shen.ms
+Wasp binaries are a small Wasp VM stub plus the compiled Lisp code appended to it. This makes building for other platforms easy as long as you have the stub for that platform.
 
 Wasp can be built for [Android](https://bluishcoder.co.nz/2013/05/09/building-wasp-lisp-and-mosref-for-android.html) and [static binaries via musl](https://bluishcoder.co.nz/2016/06/05/building-static-wasp-lisp-binaries.html) are possible.
 
