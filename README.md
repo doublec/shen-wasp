@@ -25,6 +25,9 @@ The following compiled binaries are available:
     $ chmod +x shen_static
     $ ./shen_static
 
+[shen.zip](https://bluishcoder.co.nz/shen/shen.zup). The zip file contains a Windows 64-bit binary, `shen.exe`. It should run on any modern 64-bit Windows system.
+
+
 ## Building
 
 First step, build the fork of Wasp Lisp needed to run:
@@ -138,11 +141,13 @@ I've made the following stubs available for building binaries for other systems:
 
 * [Musl 64-bit Linux static stub](https://bluishcoder.co.nz/shen/waspvm-static-linux-x86_64.bz2)
 * [64-bit Linux stub](https://bluishcoder.co.nz/shen/waspvm-linux-x86_64.bz2)
+* [64-bit Windows stub](https://bluishcoder.co.nz/shen/waspvm-win-x86_64.exe.bz2)
 
-Decompress them and copy into the `lib/waspvm-stubs` directory where Wasp Lisp was installed. Shen can then be built on your platform for 64 bit linux, or 64 bit Linux static binaries with:
+Decompress them and copy into the `lib/waspvm-stubs` directory where Wasp Lisp was installed. Shen can then be built on your platform for 64 bit linux, 64 bit Linux static binaries or 64 bit Windows with:
 
     $ waspc -exe shen -platform linux-x86_64 shen.ms
     $ waspc -exe shen_static -platform static-linux-x86_64 shen.ms
+    $ waspc -exe shen.exe -platform win-x86_64 shen.ms
 
 ## Current Port State
 
