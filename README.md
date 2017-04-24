@@ -25,7 +25,7 @@ The following compiled binaries are available:
     $ chmod +x shen_static
     $ ./shen_static
 
-[shen.zip](https://bluishcoder.co.nz/shen/shen.zup). The zip file contains a Windows 64-bit binary, `shen.exe`. It should run on any modern 64-bit Windows system.
+[shen.zip](https://bluishcoder.co.nz/shen/shen.zip). The zip file contains a Windows 64-bit binary, `shen.exe`. It should run on any modern 64-bit Windows system.
 
 
 ## Building
