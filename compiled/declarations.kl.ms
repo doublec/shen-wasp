@@ -30,7 +30,7 @@
 (kl:set (quote shen.*infs*) 0)
 (kl:set (quote *hush*) #f)
 (kl:set (quote shen.*optimise*) #f)
-(kl:set (quote *version*) "Shen 19.3.1")
+(kl:set (quote *version*) "Shen 20.0")
 (if (kl:not (kl:bound? (quote *home-directory*))) (kl:set (quote *home-directory*) "") (quote shen.skip))
 (if (kl:not (kl:bound? (quote shen.*sterror*))) (kl:set (quote shen.*sterror*) (kl:value (quote *stoutput*))) (quote shen.skip))
 (begin (register-function-arity (quote shen.initialise_arity_table) 1) (define (kl:shen.initialise_arity_table V1456) (cond ((null? V1456) (quote ())) ((and (pair? V1456) (pair? (cdr V1456))) (let ((DecArity (kl:put (car V1456) (quote arity) (car (cdr V1456)) (kl:value (quote *property-vector*))))) (kl:shen.initialise_arity_table (cdr (cdr V1456))))) (#t (kl:shen.f_error (quote shen.initialise_arity_table))))) (quote shen.initialise_arity_table))
