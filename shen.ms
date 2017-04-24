@@ -19,4 +19,4 @@
 (import "overwrites-internal")
 
 (define (main)
-  (kl:shen))
+  (kl:shen.shen))

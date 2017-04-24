@@ -81,7 +81,7 @@ Shen can be run and debugged from the Wasp REPL. To load the compiled code and r
     $ rlwrap wasp
     >> (import "driver")
     >> (load-all)
-    >> (kl:shen)
+    >> (kl:shen.shen)
     Shen, copyright (C) 2010-2015 Mark Tarver
     www.shenlanguage.org, Shen 19.3.1
     running under Wasp Lisp, implementation: WaspVM
@@ -93,7 +93,7 @@ Shen can be run and debugged from the Wasp REPL. To load the compiled code and r
 When developing on the compiler it's useful to use `eval-all` instead of `load-all`. This will load the KLambda files, compile them to Scheme and `eval` them:
 
     >> (eval-all)
-    >> (kl:shen)
+    >> (kl:shen.shen)
     ...
 
 A single input line of Shen can be entered and run, returning to the Wasp REPL with:
@@ -157,6 +157,7 @@ I'd like to wrap some of the Wasp concurrency code and see how well Shen works i
 Some places to go to learn Shen:
 
 * The [Shen OS Kernel Manual](http://shenlanguage.org/learn-shen/index.html) has a good overview of what the open source version of Shen can do. 
+* [Shen System Functions](https://github.com/Shen-Language/shen-sources/blob/master/doc/system-functions.md)
 * [Kicking the tires of Shen Prolog](https://bluishcoder.co.nz/2016/08/30/kicking-the-tires-of-shen-prolog.html)
 * [Shen, A Sufficiently Advanced Lisp](https://www.youtube.com/watch?v=lMcRBdSdO_U)
 * [Shen Trick Shots](https://www.youtube.com/watch?v=BUJNyHAeAc8)
