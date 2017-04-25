@@ -20,7 +20,7 @@
     null? string? vector? number? pair?
     < > >= <= = eq? equal?
     kl:element? kl:symbol? kl:not kl:variable? kl:boolean?
-    kl:empty? ,(string->symbol "kl:shen-pvar?") kl:tuple?))
+    kl:empty? kl:shen.pvar? kl:tuple?))
 
 (define (yields-boolean? expr)
   (cond
