@@ -148,7 +148,7 @@ Decompress them and copy into the `lib/waspvm-stubs` directory where Wasp Lisp w
     $ waspc -exe shen -platform linux-x86_64 shen.ms
     $ waspc -exe shen_static -platform static-linux-x86_64 shen.ms
     $ waspc -exe shen.exe -platform win-x86_64 shen.ms
-    $ waspc -exe shen.exe -platform Darwin-x86_64 shen.ms
+    $ waspc -exe shen_macos -platform Darwin-x86_64 shen.ms
 
 ## Current Port State
 
