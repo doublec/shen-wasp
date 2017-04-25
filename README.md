@@ -25,8 +25,9 @@ The following compiled binaries are available:
     $ chmod +x shen_static
     $ ./shen_static
 
-[shen.zip](https://bluishcoder.co.nz/shen/shen.zip). The zip file contains a Windows 64-bit binary, `shen.exe`. It should run on any modern 64-bit Windows system.
+[shen_macos.bz2](https://bluishcoder.co.nz/shen/shen_macos.bz2). 64-bit binary for Mac OS. Decompress with `bunzip2` as above.
 
+[shen.zip](https://bluishcoder.co.nz/shen/shen.zip). The zip file contains a Windows 64-bit binary, `shen.exe`. It should run on any modern 64-bit Windows system.
 
 ## Building
 
@@ -140,12 +141,14 @@ I've made the following stubs available for building binaries for other systems:
 * [Musl 64-bit Linux static stub](https://bluishcoder.co.nz/shen/waspvm-static-linux-x86_64.bz2)
 * [64-bit Linux stub](https://bluishcoder.co.nz/shen/waspvm-linux-x86_64.bz2)
 * [64-bit Windows stub](https://bluishcoder.co.nz/shen/waspvm-win-x86_64.exe.bz2)
+* [64-bit Mac OS stub](https://bluishcoder.co.nz/shen/waspvm-Darwin-x86_64.bz2)
 
 Decompress them and copy into the `lib/waspvm-stubs` directory where Wasp Lisp was installed. Shen can then be built on your platform for 64 bit linux, 64 bit Linux static binaries or 64 bit Windows with:
 
     $ waspc -exe shen -platform linux-x86_64 shen.ms
     $ waspc -exe shen_static -platform static-linux-x86_64 shen.ms
     $ waspc -exe shen.exe -platform win-x86_64 shen.ms
+    $ waspc -exe shen.exe -platform Darwin-x86_64 shen.ms
 
 ## Current Port State
 
