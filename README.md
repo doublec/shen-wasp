@@ -29,6 +29,14 @@ The following compiled binaries are available:
 
 [shen.zip](https://bluishcoder.co.nz/shen/shen.zip). The zip file contains a Windows 64-bit binary, `shen.exe`. It should run on any modern 64-bit Windows system.
 
+## FFI
+
+Wasp Lisp functions can be called from Shen. They live under the `wasp` namespace (requiring a `wasp.` prefix). For example, to spawn a Wasp thread to print something after five seconds:
+
+    (wasp.spawn (freeze (do (wasp.pause 5000) (print "Hello World\n"))))
+
+The Wasp function `spawn` takes a lambda that has no arguments. I couldn't find a way to create such a thing from Shen, but "freeze" is implemented to wrap its expression in a no argument lambda so that worked for this case.  Note that Wasp threads are cooperative, not preemptive, and are green threads, not system threads.
+
 ## Building
 
 First step, build the fork of Wasp Lisp needed to run:
