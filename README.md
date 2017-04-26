@@ -160,7 +160,7 @@ Decompress them and copy into the `lib/waspvm-stubs` directory where Wasp Lisp w
 
 ## Current Port State
 
-This is a very early version. I've only just got it working. The [Shen tests](https://github.com/Shen-Language/shen-sources/tree/master/tests) pass with the exception of the [Proof Assistant test](https://github.com/Shen-Language/shen-sources/blob/master/tests/proof%20assistant.shen) which hangs when loading.
+This is a very early version. I've only just got it working. The [Shen tests](https://github.com/Shen-Language/shen-sources/tree/master/tests) pass.
 
 The port is quite slow - about half the speed of the Shen C interpreter and significantly slower than Shen Scheme and Shen on SBCL. I've done some work on optimizing tail calls in the fork of the Wasp VM for Shen but there's much more work on the entire port that could improve things.
 
