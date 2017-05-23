@@ -77,9 +77,9 @@ Creating a Shen executable can be done with:
     $ chmod +x shen
     $ rlwrap ./shen
     Shen, copyright (C) 2010-2015 Mark Tarver
-    www.shenlanguage.org, Shen 19.3.1
+    www.shenlanguage.org, Shen 20.1
     running under Wasp Lisp, implementation: WaspVM
-    port 0.1 ported by Chris Double
+    port 0.7 ported by Chris Double
     
     
     (0-) 
@@ -95,9 +95,9 @@ Shen can be run and debugged from the Wasp REPL. To load the compiled code and r
     >> (load-all)
     >> (kl:shen.shen)
     Shen, copyright (C) 2010-2015 Mark Tarver
-    www.shenlanguage.org, Shen 19.3.1
+    www.shenlanguage.org, Shen 20.1
     running under Wasp Lisp, implementation: WaspVM
-    port 0.1 ported by Chris Double
+    port 0.7 ported by Chris Double
 
 
     (0-)
