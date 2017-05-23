@@ -14,9 +14,9 @@
 (import "compiled/writer.kl")
 (import "compiled/macros.kl")
 (import "compiled/declarations.kl")
+(import "overwrites-internal")
 (import "compiled/types.kl")
 (import "compiled/t-star.kl")
-(import "overwrites-internal")
 
 (define (main)
   (kl:shen.shen))
