@@ -284,6 +284,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 
 (defun sterror () (value *sterror*))
 
+(defun command-line () (value *argv*))
+
 (defun string->symbol (V3348) (let Symbol (intern V3348) (if (symbol? Symbol) Symbol (simple-error (cn "cannot intern " (shen.app V3348 " to a symbol" shen.s))))))
 
 (defun optimise (V3354) (cond ((= + V3354) (set shen.*optimise* true)) ((= - V3354) (set shen.*optimise* false)) (true (simple-error "optimise expects a + or a -.

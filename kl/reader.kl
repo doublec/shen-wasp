@@ -164,7 +164,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 
 (defun shen.post (V2526 V2527) (cond ((= () V2526) 0) ((cons? V2526) (+ (* (shen.expt 10 (- 0 V2527)) (hd V2526)) (shen.post (tl V2526) (+ V2527 1)))) (true (shen.f_error shen.post))))
 
-(defun shen.expt (V2532 V2533) (cond ((= 0 V2533) 1) ((> V2533 0) (* V2532 (shen.expt V2532 (- V2533 1)))) (true (* 1.000000 (/ (shen.expt V2532 (+ V2533 1)) V2532)))))
+(defun shen.expt (V2532 V2533) (cond ((= 0 V2533) 1) ((> V2533 0) (* V2532 (shen.expt V2532 (- V2533 1)))) (true (* 1.000000000000000 (/ (shen.expt V2532 (+ V2533 1)) V2532)))))
 
 (defun shen.<st_input1> (V2535) (let Parse_shen.<st_input> (shen.<st_input> V2535) (if (not (= (fail) Parse_shen.<st_input>)) (shen.pair (hd Parse_shen.<st_input>) (shen.hdtl Parse_shen.<st_input>)) (fail))))
 

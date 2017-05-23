@@ -123,6 +123,7 @@
 (begin (register-function-arity (quote protect) 1) (define (kl:protect V3346) V3346) (quote protect))
 (begin (register-function-arity (quote stoutput) 0) (define (kl:stoutput) (kl:value (quote *stoutput*))) (quote stoutput))
 (begin (register-function-arity (quote sterror) 0) (define (kl:sterror) (kl:value (quote *sterror*))) (quote sterror))
+(begin (register-function-arity (quote command-line) 0) (define (kl:command-line) (kl:value (quote *argv*))) (quote command-line))
 (begin (register-function-arity (quote string->symbol) 1) (define (kl:string->symbol V3348) (let ((Symbol (kl:intern V3348))) (if (kl:symbol? Symbol) Symbol (simple-error (string-append "cannot intern " (kl:shen.app V3348 " to a symbol" (quote shen.s))))))) (quote string->symbol))
 (begin (register-function-arity (quote optimise) 1) (define (kl:optimise V3354) (cond ((eq? (quote +) V3354) (kl:set (quote shen.*optimise*) #t)) ((eq? (quote -) V3354) (kl:set (quote shen.*optimise*) #f)) (#t (simple-error "optimise expects a + or a -.\n")))) (quote optimise))
 (begin (register-function-arity (quote os) 0) (define (kl:os) (kl:value (quote *os*))) (quote os))

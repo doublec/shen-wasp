@@ -42,3 +42,25 @@
 (define (kl:symbol? V2700)
   (cond ((or (kl:boolean? V2700) (or (number? V2700) (string? V2700))) #f)
          (#t (kl:shen.analyse-symbol? (kl:str V2700)))))
+
+(define (kl:<-address/or V2855 V2856 V2857)
+  (if (>= V2856 (vector-length V2855))
+    (kl:thaw V2857)
+    (vector-ref V2855 V2856)))
+
+(define (kl:shen.compose V1709 V1710)
+  (define r V1710)
+  (define m V1709)
+  (while (pair? m)
+    (set! r ((car m) r))
+    (set! m (cdr m)))
+  (if (null? m)
+    r
+    (kl:shen.f_error (quote shen.compose))))
+
+(define (kl:shen.safe-multiply a b)
+  (define m (* a b))
+  (if (and (not (= a 0)) (not (= (/ m a) b)))
+    (error "Integer overflow in safe-*")
+    m))
+

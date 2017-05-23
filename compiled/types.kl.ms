@@ -15,6 +15,7 @@
 (kl:declare (quote cd) (cons (quote string) (cons (quote -->) (cons (quote string) (quote ())))))
 (kl:declare (quote close) (cons (cons (quote stream) (cons (quote A) (quote ()))) (cons (quote -->) (cons (cons (quote list) (cons (quote B) (quote ()))) (quote ())))))
 (kl:declare (quote cn) (cons (quote string) (cons (quote -->) (cons (cons (quote string) (cons (quote -->) (cons (quote string) (quote ())))) (quote ())))))
+(kl:declare (quote command-line) (cons (quote -->) (cons (cons (quote list) (cons (quote string) (quote ()))) (quote ()))))
 (kl:declare (quote compile) (cons (cons (quote A) (cons (quote shen.==>) (cons (quote B) (quote ())))) (cons (quote -->) (cons (cons (quote A) (cons (quote -->) (cons (cons (cons (quote A) (cons (quote -->) (cons (quote B) (quote ())))) (cons (quote -->) (cons (quote B) (quote ())))) (quote ())))) (quote ())))))
 (kl:declare (quote cons?) (cons (quote A) (cons (quote -->) (cons (quote boolean) (quote ())))))
 (kl:declare (quote destroy) (cons (cons (quote A) (cons (quote -->) (cons (quote B) (quote ())))) (cons (quote -->) (cons (quote symbol) (quote ())))))
