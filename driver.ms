@@ -100,6 +100,7 @@
                   "load.kl"
                   "writer.kl"
                   "macros.kl"
+                  "dict.kl"
                   "declarations.kl"
                   "types.kl"
                   "t-star.kl"
@@ -124,6 +125,7 @@
                   "load.kl"
                   "writer.kl"
                   "macros.kl"
+                  "dict.kl"
                   "declarations.kl"
                   "types.kl"
                   "t-star.kl"))
@@ -148,6 +150,7 @@
                   "load.kl"
                   "writer.kl"
                   "macros.kl"
+                  "dict.kl"
                   "declarations.kl"
                   "types.kl"
                   "t-star.kl"
@@ -161,7 +164,7 @@
 
 (kl:set (quote *language*) "Wasp Lisp")
 (kl:set (quote *implementation*) "WaspVM")
-(kl:set (quote *port*) "0.7")
+(kl:set (quote *port*) "0.8")
 (kl:set (quote *porters*) "Chris Double")
 (kl:set (quote *sterror*) (cons (current-output) #f))
 (kl:set (quote *stinput*) (cons (current-input) (make-string)))

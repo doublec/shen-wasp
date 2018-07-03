@@ -13,6 +13,7 @@
 (import "compiled/load.kl")
 (import "compiled/writer.kl")
 (import "compiled/macros.kl")
+(import "compiled/dict.kl")
 (import "compiled/declarations.kl")
 (import "overwrites-internal")
 (import "compiled/types.kl")
