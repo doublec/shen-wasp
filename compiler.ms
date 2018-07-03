@@ -45,7 +45,7 @@
 
   (cond
     ((null? expr) '(quote ()))
-    ((unbound? expr) `(quote ,expr))
+    ((unbound? expr) (if (and (symbol? expr) (equal? expr (string->symbol ","))) `(string->symbol ,(symbol->string expr)) `(quote ,expr)))
     ((and (pair? expr) (= (length expr) 4) (eq? (car expr) 'let))
      (define var (list-ref expr 1))
      (define value (list-ref expr 2))
