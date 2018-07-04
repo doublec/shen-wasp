@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.8 - 2018-07-04
+
+- Update to Shen OS Kernel 21.0.
+
 ## 0.7 - 2017-05-23
 
 - update to Shen OS Kernel 20.1.
