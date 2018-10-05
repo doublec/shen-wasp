@@ -166,6 +166,15 @@ The port is quite slow - about half the speed of the Shen C interpreter and sign
 
 I'd like to wrap some of the Wasp concurrency code and see how well Shen works in areas I use Wasp for.
 
+## Port Specific Features
+
+The Shen variable `shen-wasp.*argv*` contains a list of the command line arguments passed to the Shen executable:
+
+    $ ./shen hello world
+    ...
+    (0-) (value shen-wasp.*argv*)
+    [ "hello" "world" ]
+
 ## Learning Shen
 
 Some places to go to learn Shen:

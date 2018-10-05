@@ -19,5 +19,6 @@
 (import "compiled/types.kl")
 (import "compiled/t-star.kl")
 
-(define (main)
+(define (main . args)
+  (kl:set (quote shen-wasp.*argv*) args)
   (kl:shen.shen))
