@@ -64,3 +64,12 @@
     (error "Integer overflow in safe-*")
     m))
 
+(define (kl:cd path)
+  (if (string=? path "")
+    (let ((path (kl:value (quote shen.*initial-home-directory*))))
+      (chdir path)
+      (kl:set (quote *home-directory*) path))
+    (begin
+      (chdir path)
+      (kl:set (quote *home-directory*) path))))
+

@@ -169,6 +169,8 @@
 (kl:set (quote *sterror*) (cons (current-output) #f))
 (kl:set (quote *stinput*) (cons (current-input) (make-string)))
 (kl:set (quote *stoutput*) (cons (current-output) #f))
+(kl:set (quote *home-directory*) (getcwd))
+(kl:set (quote shen.*initial-home-directory*) (getcwd))
 
 
 
