@@ -1,8 +1,10 @@
 # Change Log
 
-## unreleased
+## 0.9 - 2018-10-06
 
 - Add `shen-wasp.*argv*` variable to get list of command line arguments.
+- Fix 'cd' function so current directory changing works with 'load'.
+- Add command line arguments to load scripts, evaluate expressions and show usage.
 
 ## 0.8 - 2018-07-04
 
