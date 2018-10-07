@@ -29,6 +29,41 @@ The following compiled binaries are available:
 
 [shen.zip](https://bluishcoder.co.nz/shen/shen.zip). The zip file contains a Windows 64-bit binary, `shen.exe`. It should run on any modern 64-bit Windows system.
 
+## Usage
+
+Running the `shen` executable without command line arguments will start the REPL. The following command line arguments are available:
+
+    Usage: shen [options] [...args...]
+      -h, --help          : Prints help and exits
+      -l, --load <file>   : Loads Shen <file>
+      -e, --eval <string> : Evaluates <string>
+      -r, --repl          : Run the REPL, even if -l or -e are provided
+    Any additional arguments are passed to the Shen system in
+    the variable shen-wasp.*argv*
+
+The command line arguments are processed in order. This allows loading multiple files and calling functions in a single command. For example, building the Shen KLambda files from the [Shen source](https://github.com/Shen-Language/shen-sources):
+
+    $ shen  -l make.shen -e "(make)"
+    sources directory: "sources/"
+    klambda directory: "klambda/"
+    
+    compiling core
+    compiling declarations
+    ...
+    compiling yacc
+    
+    compilation complete.
+
+## Port Specific Features
+
+The Shen variable `shen-wasp.*argv*` contains a list of the command line arguments passed to the Shen executable:
+
+    $ ./shen hello world
+    ...
+    (0-) (value shen-wasp.*argv*)
+    [ "hello" "world" ]
+
+
 ## FFI
 
 Wasp Lisp functions can be called from Shen. They live under the `wasp` namespace (requiring a `wasp.` prefix). For example, to spawn a Wasp thread to print something after five seconds:
@@ -158,6 +193,37 @@ Decompress them and copy into the `lib/waspvm-stubs` directory where Wasp Lisp w
     $ waspc -exe shen.exe -platform win-x86_64 shen.ms
     $ waspc -exe shen_macos -platform Darwin-x86_64 shen.ms
 
+## Building KLambda files from Shen Source
+
+To generate new KLambda files from the original [Shen source](https://github.com/Shen-Language/shen-sources) requires loading the `make.shen` and running the `make` function. Once generated the KLambda files can be recompiled as described above to generate a new Wasp Shen system with updated Shen kernel code. The following shows how this can be done using an existing Wasp Shen executable:
+
+    $ git clone https://github.com/Shen-Language/shen-sources
+    $ cd shen-sources
+    $ mkdir klambda
+    $ shen  -l make.shen -e "(make)"
+    sources directory: "sources/"
+    klambda directory: "klambda/"
+    
+    compiling core
+    compiling declarations
+    ...
+    compiling yacc
+    
+    compilation complete.
+
+Copy the KLambda files from the `klambda` directory to the `kl` directory of this repository and rebuild the Wasp Shen system:
+
+    $ cp klambda/*.kl ...path to wasp shen.../kl/
+    $ cd ...path to wasp shen...
+    $ rlwrap wasp
+    >> (import "driver")
+    >> (compile-all)
+    Compiling toplevel.kl
+    ...
+    <Ctrl+D>
+    $ make
+    ...
+ 
 ## Current Port State
 
 This is a very early version. I've only just got it working. The [Shen tests](https://github.com/Shen-Language/shen-sources/tree/master/tests) pass.
@@ -165,15 +231,6 @@ This is a very early version. I've only just got it working. The [Shen tests](ht
 The port is quite slow - about half the speed of the Shen C interpreter and significantly slower than Shen Scheme and Shen on SBCL. I've done some work on optimizing tail calls in the fork of the Wasp VM for Shen but there's much more work on the entire port that could improve things.
 
 I'd like to wrap some of the Wasp concurrency code and see how well Shen works in areas I use Wasp for.
-
-## Port Specific Features
-
-The Shen variable `shen-wasp.*argv*` contains a list of the command line arguments passed to the Shen executable:
-
-    $ ./shen hello world
-    ...
-    (0-) (value shen-wasp.*argv*)
-    [ "hello" "world" ]
 
 ## Learning Shen
 
