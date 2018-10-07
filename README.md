@@ -223,6 +223,14 @@ Copy the KLambda files from the `klambda` directory to the `kl` directory of thi
     <Ctrl+D>
     $ make
     ...
+
+## Running Shen Kernel Tests
+
+The Shen kernel tests are in the Shen Sources repository. They can be run with:
+
+    $ git clone https://github.com/Shen-Language/shen-sources
+    $ cd shen-sources/tests
+    $ shen -l README.shen -l tests.shen
  
 ## Current Port State
 
