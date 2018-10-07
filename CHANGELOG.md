@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.10 - 2018-10-07
+
+- Update to Shen OS Kernel 21.1.
+
 ## 0.9 - 2018-10-06
 
 - Add `shen-wasp.*argv*` variable to get list of command line arguments.
