@@ -108,7 +108,8 @@
   (for-each
     (lambda (file)
       (print "Compiling ") (print file) (print "\n")
-      (write-lisp-file (string-append "compiled/" file ".ms") (map kl->wasp (read-kl-file (string-append "kl/" file))))
+      (define compiled-name (string-append "compiled/" file))
+      (write-lisp-file (string-append compiled-name ".ms") (cons `(module ,compiled-name) (map kl->wasp (read-kl-file (string-append "kl/" file)))))
       (waspc (string-append "compiled/" file ".ms")))
     files)
   (waspc "overwrites-internal.ms"))
@@ -129,7 +130,6 @@
                   "declarations.kl"
                   "types.kl"
                   "t-star.kl"))
-
   (for-each
     (lambda (file)
       (print "Compiling ") (print file) (print "\n")

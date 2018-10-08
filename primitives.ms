@@ -4,6 +4,7 @@
 ; Shen Scheme derived soure code is:
 ; Copyright (c) 2012-2015 Bruno Deferrari.  All rights reserved.
 
+(module "primitives")
 (import "lib/with-io")
 (import "lib/eval")
 
@@ -18,6 +19,8 @@
     (set! msg (wait q)))
   output)
 
+(export call-with-output-string)
+
 (define (write-u8 byte out)
   (define out (car out))
   (cond
@@ -27,6 +30,8 @@
       (if (or (= byte 13) (= byte 10))
         (pause))))
   out)
+
+(export write-u8)
 
 (define (read-u8 in)
   (define input-buffer (cdr in))
@@ -43,6 +48,8 @@
         ((string? msg) -1)
         (else (error 'read-u8 "Non-string on input stream"))))))
 
+(export read-u8)
+
 (define (read-file-u8 in input-buffer)
   (if (> (string-length input-buffer) 0)
     (string-read-byte! input-buffer)
@@ -55,6 +62,8 @@
         ((string? msg) -1)
         (else (error 'read-file-u8 "Non-string on file stream"))))))
 
+(export read-file-u8)
+
 ;; Boolean Operators
 ;;
 
@@ -62,6 +71,8 @@
   (if (boolean? value)
       value
       (error 'assert-boolean "expected a boolean, got" value)))
+
+(export assert-boolean)
 
 ;; Symbols
 ;;
@@ -162,3 +173,4 @@
     ((run) (now))
     (else (error kl:get-time "get-time does not understand the parameter" sym))))
 
+(export kl:get-time kl:close kl:open kl:eval-kl kl:= kl:error-to-string kl:value kl:set kl:str kl:intern)

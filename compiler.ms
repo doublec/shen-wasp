@@ -318,6 +318,7 @@
      `(begin
         (register-function-arity (quote ,name) ,(length args))
         (define (,(prefix-op name) ,@args) ,(compile-expression body args))
+        (export ,name)
         (quote ,name)))
     (else (compile-expression expr '()))))
 

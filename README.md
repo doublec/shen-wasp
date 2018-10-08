@@ -123,11 +123,10 @@ Note that it takes a while to startup as it runs through the Shen and KLambda in
 
 ## Running from the Wasp REPL
 
-Shen can be run and debugged from the Wasp REPL. To load the compiled code and run Shen:
+Shen can be run and debugged from the Wasp REPL. To import the compiled code and run Shen:
 
     $ rlwrap wasp
-    >> (import "driver")
-    >> (load-all)
+    >> (import "shen-lib")
     >> (kl:shen.shen)
     Shen, copyright (C) 2010-2015 Mark Tarver
     www.shenlanguage.org, Shen 20.1
@@ -137,8 +136,9 @@ Shen can be run and debugged from the Wasp REPL. To load the compiled code and r
 
     (0-)
 
-When developing on the compiler it's useful to use `eval-all` instead of `load-all`. This will load the KLambda files, compile them to Scheme and `eval` them:
+When developing on the compiler it's useful to use `eval-all`. This will load the KLambda files, compile them to Scheme and `eval` them:
 
+    >> (import "driver")
     >> (eval-all)
     >> (kl:shen.shen)
     ...

@@ -1,5 +1,10 @@
 # Change Log
 
+## unreleased
+
+- Add module declarations to Wasp Lisp files and a `shen-libs.ms` that
+  can be imported to load all the compiled Shen code from Lisp.
+
 ## 0.10 - 2018-10-07
 
 - Update to Shen OS Kernel 21.1.
