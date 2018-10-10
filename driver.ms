@@ -164,7 +164,7 @@
 
 (kl:set (quote *language*) "Wasp Lisp")
 (kl:set (quote *implementation*) "WaspVM")
-(kl:set (quote *port*) "0.10")
+(kl:set (quote *port*) "0.11")
 (kl:set (quote *porters*) "Chris Double")
 (kl:set (quote *sterror*) (cons (current-output) #f))
 (kl:set (quote *stinput*) (cons (current-input) (make-string)))

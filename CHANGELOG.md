@@ -1,6 +1,6 @@
 # Change Log
 
-## unreleased
+## 0.11 - unreleased
 
 - Add module declarations to Wasp Lisp files and a `shen-libs.ms` that
   can be imported to load all the compiled Shen code from Lisp.
