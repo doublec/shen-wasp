@@ -1,308 +1,313 @@
-"Copyright (c) 2015, Mark Tarver
+"Copyright (c) 2010-2015, Mark Tarver
 
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
-1. Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
-3. The name of Mark Tarver may not be used to endorse or promote products
-   derived from this software without specific prior written permission.
 
-THIS SOFTWARE IS PROVIDED BY Mark Tarver ''AS IS'' AND ANY
-EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+1. Redistributions of source code must retain the above copyright notice,
+this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+may be used to endorse or promote products derived from this software without
+specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ''AS IS'' AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL Mark Tarver BE LIABLE FOR ANY
-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+"
 
-(defun declare (V4007 V4008) (let Record (set shen.*signedfuncs* (cons (cons V4007 V4008) (value shen.*signedfuncs*))) (let Variancy (trap-error (shen.variancy-test V4007 V4008) (lambda E shen.skip)) (let Type (shen.rcons_form (shen.demodulate V4008)) (let F* (concat shen.type-signature-of- V4007) (let Parameters (shen.parameters 1) (let Clause (cons (cons F* (cons X ())) (cons :- (cons (cons (cons unify! (cons X (cons Type ()))) ()) ()))) (let AUM_instruction (shen.aum Clause Parameters) (let Code (shen.aum_to_shen AUM_instruction) (let ShenDef (cons define (cons F* (append Parameters (append (cons ProcessN (cons Continuation ())) (cons -> (cons Code ())))))) (let Eval (shen.eval-without-macros ShenDef) V4007)))))))))))
+(defun declare (V4313 V4314) (let Record (set shen.*signedfuncs* (cons (cons V4313 V4314) (value shen.*signedfuncs*))) (let Variancy (trap-error (shen.variancy-test V4313 V4314) (lambda E shen.skip)) (let Type (shen.rcons_form (shen.demodulate V4314)) (let F* (concat shen.type-signature-of- V4313) (let Parameters (shen.parameters 1) (let Clause (cons (cons F* (cons X ())) (cons :- (cons (cons (cons unify! (cons X (cons Type ()))) ()) ()))) (let AUM_instruction (shen.aum Clause Parameters) (let Code (shen.aum_to_shen AUM_instruction) (let ShenDef (cons define (cons F* (append Parameters (append (cons ProcessN (cons Continuation ())) (cons -> (cons Code ())))))) (let Eval (shen.eval-without-macros ShenDef) V4313)))))))))))
 
-(defun shen.demodulate (V4010) (let Demod (shen.walk (value shen.*demodulation-function*) V4010) (if (= Demod V4010) V4010 (shen.demodulate Demod))))
+(defun shen.demodulate (V4316) (let Demod (shen.walk (value shen.*demodulation-function*) V4316) (if (= Demod V4316) V4316 (shen.demodulate Demod))))
 
-(defun shen.variancy-test (V4013 V4014) (let TypeF (shen.typecheck V4013 B) (let Check (if (= symbol TypeF) shen.skip (if (shen.variant? TypeF V4014) shen.skip (shen.prhush (cn "warning: changing the type of " (shen.app V4013 " may create errors
+(defun shen.variancy-test (V4319 V4320) (let TypeF (shen.typecheck V4319 B) (let Check (if (= symbol TypeF) shen.skip (if (shen.variant? TypeF V4320) shen.skip (shen.prhush (cn "warning: changing the type of " (shen.app V4319 " may create errors
 " shen.a)) (stoutput)))) shen.skip)))
 
-(defun shen.variant? (V4027 V4028) (cond ((= V4028 V4027) true) ((and (cons? V4027) (and (cons? V4028) (= (hd V4028) (hd V4027)))) (shen.variant? (tl V4027) (tl V4028))) ((and (cons? V4027) (and (cons? V4028) (and (shen.pvar? (hd V4027)) (variable? (hd V4028))))) (shen.variant? (subst shen.a (hd V4027) (tl V4027)) (subst shen.a (hd V4028) (tl V4028)))) ((and (cons? V4027) (and (cons? (hd V4027)) (and (cons? V4028) (cons? (hd V4028))))) (shen.variant? (append (hd V4027) (tl V4027)) (append (hd V4028) (tl V4028)))) (true false)))
+(defun shen.variant? (V4333 V4334) (cond ((= V4334 V4333) true) ((and (cons? V4333) (and (cons? V4334) (= (hd V4334) (hd V4333)))) (shen.variant? (tl V4333) (tl V4334))) ((and (cons? V4333) (and (cons? V4334) (and (shen.pvar? (hd V4333)) (variable? (hd V4334))))) (shen.variant? (subst shen.a (hd V4333) (tl V4333)) (subst shen.a (hd V4334) (tl V4334)))) ((and (cons? V4333) (and (cons? (hd V4333)) (and (cons? V4334) (cons? (hd V4334))))) (shen.variant? (append (hd V4333) (tl V4333)) (append (hd V4334) (tl V4334)))) (true false)))
 
-(declare absvector? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-absvector? (V4339 V4340 V4341) (let A (shen.newpv V4340) (do (shen.incinfs) (unify! V4339 (cons A (cons --> (cons boolean ()))) V4340 V4341))))
 
-(declare adjoin (cons A (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))))
+(defun shen.type-signature-of-adjoin (V4349 V4350 V4351) (let A (shen.newpv V4350) (do (shen.incinfs) (unify! V4349 (cons A (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))) V4350 V4351))))
 
-(declare and (cons boolean (cons --> (cons (cons boolean (cons --> (cons boolean ()))) ()))))
+(defun shen.type-signature-of-and (V4359 V4360 V4361) (do (shen.incinfs) (unify! V4359 (cons boolean (cons --> (cons (cons boolean (cons --> (cons boolean ()))) ()))) V4360 V4361)))
 
-(declare shen.app (cons A (cons --> (cons (cons string (cons --> (cons (cons symbol (cons --> (cons string ()))) ()))) ()))))
+(defun shen.type-signature-of-shen.app (V4369 V4370 V4371) (let A (shen.newpv V4370) (do (shen.incinfs) (unify! V4369 (cons A (cons --> (cons (cons string (cons --> (cons (cons symbol (cons --> (cons string ()))) ()))) ()))) V4370 V4371))))
 
-(declare append (cons (cons list (cons A ())) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))))
+(defun shen.type-signature-of-append (V4379 V4380 V4381) (let A (shen.newpv V4380) (do (shen.incinfs) (unify! V4379 (cons (cons list (cons A ())) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))) V4380 V4381))))
 
-(declare arity (cons A (cons --> (cons number ()))))
+(defun shen.type-signature-of-arity (V4389 V4390 V4391) (let A (shen.newpv V4390) (do (shen.incinfs) (unify! V4389 (cons A (cons --> (cons number ()))) V4390 V4391))))
 
-(declare assoc (cons A (cons --> (cons (cons (cons list (cons (cons list (cons A ())) ())) (cons --> (cons (cons list (cons A ())) ()))) ()))))
+(defun shen.type-signature-of-assoc (V4399 V4400 V4401) (let A (shen.newpv V4400) (do (shen.incinfs) (unify! V4399 (cons A (cons --> (cons (cons (cons list (cons (cons list (cons A ())) ())) (cons --> (cons (cons list (cons A ())) ()))) ()))) V4400 V4401))))
 
-(declare boolean? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-boolean? (V4409 V4410 V4411) (let A (shen.newpv V4410) (do (shen.incinfs) (unify! V4409 (cons A (cons --> (cons boolean ()))) V4410 V4411))))
 
-(declare bound? (cons symbol (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-bound? (V4419 V4420 V4421) (do (shen.incinfs) (unify! V4419 (cons symbol (cons --> (cons boolean ()))) V4420 V4421)))
 
-(declare cd (cons string (cons --> (cons string ()))))
+(defun shen.type-signature-of-cd (V4429 V4430 V4431) (do (shen.incinfs) (unify! V4429 (cons string (cons --> (cons string ()))) V4430 V4431)))
 
-(declare close (cons (cons stream (cons A ())) (cons --> (cons (cons list (cons B ())) ()))))
+(defun shen.type-signature-of-close (V4439 V4440 V4441) (let A (shen.newpv V4440) (let B (shen.newpv V4440) (do (shen.incinfs) (unify! V4439 (cons (cons stream (cons A ())) (cons --> (cons (cons list (cons B ())) ()))) V4440 V4441)))))
 
-(declare cn (cons string (cons --> (cons (cons string (cons --> (cons string ()))) ()))))
+(defun shen.type-signature-of-cn (V4449 V4450 V4451) (do (shen.incinfs) (unify! V4449 (cons string (cons --> (cons (cons string (cons --> (cons string ()))) ()))) V4450 V4451)))
 
-(declare compile (cons (cons A (cons shen.==> (cons B ()))) (cons --> (cons (cons A (cons --> (cons (cons (cons A (cons --> (cons B ()))) (cons --> (cons B ()))) ()))) ()))))
+(defun shen.type-signature-of-compile (V4459 V4460 V4461) (let A (shen.newpv V4460) (let B (shen.newpv V4460) (do (shen.incinfs) (unify! V4459 (cons (cons A (cons shen.==> (cons B ()))) (cons --> (cons (cons A (cons --> (cons (cons (cons A (cons --> (cons B ()))) (cons --> (cons B ()))) ()))) ()))) V4460 V4461)))))
 
-(declare cons? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-cons? (V4469 V4470 V4471) (let A (shen.newpv V4470) (do (shen.incinfs) (unify! V4469 (cons A (cons --> (cons boolean ()))) V4470 V4471))))
 
-(declare destroy (cons (cons A (cons --> (cons B ()))) (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-destroy (V4479 V4480 V4481) (let A (shen.newpv V4480) (let B (shen.newpv V4480) (do (shen.incinfs) (unify! V4479 (cons (cons A (cons --> (cons B ()))) (cons --> (cons symbol ()))) V4480 V4481)))))
 
-(declare difference (cons (cons list (cons A ())) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))))
+(defun shen.type-signature-of-difference (V4489 V4490 V4491) (let A (shen.newpv V4490) (do (shen.incinfs) (unify! V4489 (cons (cons list (cons A ())) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))) V4490 V4491))))
 
-(declare do (cons A (cons --> (cons (cons B (cons --> (cons B ()))) ()))))
+(defun shen.type-signature-of-do (V4499 V4500 V4501) (let A (shen.newpv V4500) (let B (shen.newpv V4500) (do (shen.incinfs) (unify! V4499 (cons A (cons --> (cons (cons B (cons --> (cons B ()))) ()))) V4500 V4501)))))
 
-(declare <e> (cons (cons list (cons A ())) (cons shen.==> (cons (cons list (cons B ())) ()))))
+(defun shen.type-signature-of-<e> (V4509 V4510 V4511) (let A (shen.newpv V4510) (let B (shen.newpv V4510) (do (shen.incinfs) (unify! V4509 (cons (cons list (cons A ())) (cons shen.==> (cons (cons list (cons B ())) ()))) V4510 V4511)))))
 
-(declare <!> (cons (cons list (cons A ())) (cons shen.==> (cons (cons list (cons A ())) ()))))
+(defun shen.type-signature-of-<!> (V4519 V4520 V4521) (let A (shen.newpv V4520) (do (shen.incinfs) (unify! V4519 (cons (cons list (cons A ())) (cons shen.==> (cons (cons list (cons A ())) ()))) V4520 V4521))))
 
-(declare element? (cons A (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons boolean ()))) ()))))
+(defun shen.type-signature-of-element? (V4529 V4530 V4531) (let A (shen.newpv V4530) (do (shen.incinfs) (unify! V4529 (cons A (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons boolean ()))) ()))) V4530 V4531))))
 
-(declare empty? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-empty? (V4539 V4540 V4541) (let A (shen.newpv V4540) (do (shen.incinfs) (unify! V4539 (cons A (cons --> (cons boolean ()))) V4540 V4541))))
 
-(declare enable-type-theory (cons symbol (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-enable-type-theory (V4549 V4550 V4551) (do (shen.incinfs) (unify! V4549 (cons symbol (cons --> (cons boolean ()))) V4550 V4551)))
 
-(declare external (cons symbol (cons --> (cons (cons list (cons symbol ())) ()))))
+(defun shen.type-signature-of-external (V4559 V4560 V4561) (do (shen.incinfs) (unify! V4559 (cons symbol (cons --> (cons (cons list (cons symbol ())) ()))) V4560 V4561)))
 
-(declare error-to-string (cons exception (cons --> (cons string ()))))
+(defun shen.type-signature-of-error-to-string (V4569 V4570 V4571) (do (shen.incinfs) (unify! V4569 (cons exception (cons --> (cons string ()))) V4570 V4571)))
 
-(declare explode (cons A (cons --> (cons (cons list (cons string ())) ()))))
+(defun shen.type-signature-of-explode (V4579 V4580 V4581) (let A (shen.newpv V4580) (do (shen.incinfs) (unify! V4579 (cons A (cons --> (cons (cons list (cons string ())) ()))) V4580 V4581))))
 
-(declare fail (cons --> (cons symbol ())))
+(defun shen.type-signature-of-fail (V4589 V4590 V4591) (do (shen.incinfs) (unify! V4589 (cons --> (cons symbol ())) V4590 V4591)))
 
-(declare fail-if (cons (cons symbol (cons --> (cons boolean ()))) (cons --> (cons (cons symbol (cons --> (cons symbol ()))) ()))))
+(defun shen.type-signature-of-fail-if (V4599 V4600 V4601) (do (shen.incinfs) (unify! V4599 (cons (cons symbol (cons --> (cons boolean ()))) (cons --> (cons (cons symbol (cons --> (cons symbol ()))) ()))) V4600 V4601)))
 
-(declare fix (cons (cons A (cons --> (cons A ()))) (cons --> (cons (cons A (cons --> (cons A ()))) ()))))
+(defun shen.type-signature-of-fix (V4609 V4610 V4611) (let A (shen.newpv V4610) (do (shen.incinfs) (unify! V4609 (cons (cons A (cons --> (cons A ()))) (cons --> (cons (cons A (cons --> (cons A ()))) ()))) V4610 V4611))))
 
-(declare freeze (cons A (cons --> (cons (cons lazy (cons A ())) ()))))
+(defun shen.type-signature-of-freeze (V4619 V4620 V4621) (let A (shen.newpv V4620) (do (shen.incinfs) (unify! V4619 (cons A (cons --> (cons (cons lazy (cons A ())) ()))) V4620 V4621))))
 
-(declare fst (cons (cons A (cons * (cons B ()))) (cons --> (cons A ()))))
+(defun shen.type-signature-of-fst (V4629 V4630 V4631) (let B (shen.newpv V4630) (let A (shen.newpv V4630) (do (shen.incinfs) (unify! V4629 (cons (cons A (cons * (cons B ()))) (cons --> (cons A ()))) V4630 V4631)))))
 
-(declare function (cons (cons A (cons --> (cons B ()))) (cons --> (cons (cons A (cons --> (cons B ()))) ()))))
+(defun shen.type-signature-of-function (V4639 V4640 V4641) (let A (shen.newpv V4640) (let B (shen.newpv V4640) (do (shen.incinfs) (unify! V4639 (cons (cons A (cons --> (cons B ()))) (cons --> (cons (cons A (cons --> (cons B ()))) ()))) V4640 V4641)))))
 
-(declare gensym (cons symbol (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-gensym (V4649 V4650 V4651) (do (shen.incinfs) (unify! V4649 (cons symbol (cons --> (cons symbol ()))) V4650 V4651)))
 
-(declare <-vector (cons (cons vector (cons A ())) (cons --> (cons (cons number (cons --> (cons A ()))) ()))))
+(defun shen.type-signature-of-<-vector (V4659 V4660 V4661) (let A (shen.newpv V4660) (do (shen.incinfs) (unify! V4659 (cons (cons vector (cons A ())) (cons --> (cons (cons number (cons --> (cons A ()))) ()))) V4660 V4661))))
 
-(declare vector-> (cons (cons vector (cons A ())) (cons --> (cons (cons number (cons --> (cons (cons A (cons --> (cons (cons vector (cons A ())) ()))) ()))) ()))))
+(defun shen.type-signature-of-vector-> (V4669 V4670 V4671) (let A (shen.newpv V4670) (do (shen.incinfs) (unify! V4669 (cons (cons vector (cons A ())) (cons --> (cons (cons number (cons --> (cons (cons A (cons --> (cons (cons vector (cons A ())) ()))) ()))) ()))) V4670 V4671))))
 
-(declare vector (cons number (cons --> (cons (cons vector (cons A ())) ()))))
+(defun shen.type-signature-of-vector (V4679 V4680 V4681) (let A (shen.newpv V4680) (do (shen.incinfs) (unify! V4679 (cons number (cons --> (cons (cons vector (cons A ())) ()))) V4680 V4681))))
 
-(declare get-time (cons symbol (cons --> (cons number ()))))
+(defun shen.type-signature-of-get-time (V4689 V4690 V4691) (do (shen.incinfs) (unify! V4689 (cons symbol (cons --> (cons number ()))) V4690 V4691)))
 
-(declare hash (cons A (cons --> (cons (cons number (cons --> (cons number ()))) ()))))
+(defun shen.type-signature-of-hash (V4699 V4700 V4701) (let A (shen.newpv V4700) (do (shen.incinfs) (unify! V4699 (cons A (cons --> (cons (cons number (cons --> (cons number ()))) ()))) V4700 V4701))))
 
-(declare head (cons (cons list (cons A ())) (cons --> (cons A ()))))
+(defun shen.type-signature-of-head (V4709 V4710 V4711) (let A (shen.newpv V4710) (do (shen.incinfs) (unify! V4709 (cons (cons list (cons A ())) (cons --> (cons A ()))) V4710 V4711))))
 
-(declare hdv (cons (cons vector (cons A ())) (cons --> (cons A ()))))
+(defun shen.type-signature-of-hdv (V4719 V4720 V4721) (let A (shen.newpv V4720) (do (shen.incinfs) (unify! V4719 (cons (cons vector (cons A ())) (cons --> (cons A ()))) V4720 V4721))))
 
-(declare hdstr (cons string (cons --> (cons string ()))))
+(defun shen.type-signature-of-hdstr (V4729 V4730 V4731) (do (shen.incinfs) (unify! V4729 (cons string (cons --> (cons string ()))) V4730 V4731)))
 
-(declare if (cons boolean (cons --> (cons (cons A (cons --> (cons (cons A (cons --> (cons A ()))) ()))) ()))))
+(defun shen.type-signature-of-if (V4739 V4740 V4741) (let A (shen.newpv V4740) (do (shen.incinfs) (unify! V4739 (cons boolean (cons --> (cons (cons A (cons --> (cons (cons A (cons --> (cons A ()))) ()))) ()))) V4740 V4741))))
 
-(declare it (cons --> (cons string ())))
+(defun shen.type-signature-of-it (V4749 V4750 V4751) (do (shen.incinfs) (unify! V4749 (cons --> (cons string ())) V4750 V4751)))
 
-(declare implementation (cons --> (cons string ())))
+(defun shen.type-signature-of-implementation (V4759 V4760 V4761) (do (shen.incinfs) (unify! V4759 (cons --> (cons string ())) V4760 V4761)))
 
-(declare include (cons (cons list (cons symbol ())) (cons --> (cons (cons list (cons symbol ())) ()))))
+(defun shen.type-signature-of-include (V4769 V4770 V4771) (do (shen.incinfs) (unify! V4769 (cons (cons list (cons symbol ())) (cons --> (cons (cons list (cons symbol ())) ()))) V4770 V4771)))
 
-(declare include-all-but (cons (cons list (cons symbol ())) (cons --> (cons (cons list (cons symbol ())) ()))))
+(defun shen.type-signature-of-include-all-but (V4779 V4780 V4781) (do (shen.incinfs) (unify! V4779 (cons (cons list (cons symbol ())) (cons --> (cons (cons list (cons symbol ())) ()))) V4780 V4781)))
 
-(declare inferences (cons --> (cons number ())))
+(defun shen.type-signature-of-inferences (V4789 V4790 V4791) (do (shen.incinfs) (unify! V4789 (cons --> (cons number ())) V4790 V4791)))
 
-(declare shen.insert (cons A (cons --> (cons (cons string (cons --> (cons string ()))) ()))))
+(defun shen.type-signature-of-shen.insert (V4799 V4800 V4801) (let A (shen.newpv V4800) (do (shen.incinfs) (unify! V4799 (cons A (cons --> (cons (cons string (cons --> (cons string ()))) ()))) V4800 V4801))))
 
-(declare integer? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-integer? (V4809 V4810 V4811) (let A (shen.newpv V4810) (do (shen.incinfs) (unify! V4809 (cons A (cons --> (cons boolean ()))) V4810 V4811))))
 
-(declare internal (cons symbol (cons --> (cons (cons list (cons symbol ())) ()))))
+(defun shen.type-signature-of-internal (V4819 V4820 V4821) (do (shen.incinfs) (unify! V4819 (cons symbol (cons --> (cons (cons list (cons symbol ())) ()))) V4820 V4821)))
 
-(declare intersection (cons (cons list (cons A ())) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))))
+(defun shen.type-signature-of-intersection (V4829 V4830 V4831) (let A (shen.newpv V4830) (do (shen.incinfs) (unify! V4829 (cons (cons list (cons A ())) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))) V4830 V4831))))
 
-(declare kill (cons --> (cons A ())))
+(defun shen.type-signature-of-kill (V4839 V4840 V4841) (let A (shen.newpv V4840) (do (shen.incinfs) (unify! V4839 (cons --> (cons A ())) V4840 V4841))))
 
-(declare language (cons --> (cons string ())))
+(defun shen.type-signature-of-language (V4849 V4850 V4851) (do (shen.incinfs) (unify! V4849 (cons --> (cons string ())) V4850 V4851)))
 
-(declare length (cons (cons list (cons A ())) (cons --> (cons number ()))))
+(defun shen.type-signature-of-length (V4859 V4860 V4861) (let A (shen.newpv V4860) (do (shen.incinfs) (unify! V4859 (cons (cons list (cons A ())) (cons --> (cons number ()))) V4860 V4861))))
 
-(declare limit (cons (cons vector (cons A ())) (cons --> (cons number ()))))
+(defun shen.type-signature-of-limit (V4869 V4870 V4871) (let A (shen.newpv V4870) (do (shen.incinfs) (unify! V4869 (cons (cons vector (cons A ())) (cons --> (cons number ()))) V4870 V4871))))
 
-(declare load (cons string (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-load (V4879 V4880 V4881) (do (shen.incinfs) (unify! V4879 (cons string (cons --> (cons symbol ()))) V4880 V4881)))
 
-(declare map (cons (cons A (cons --> (cons B ()))) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons B ())) ()))) ()))))
+(defun shen.type-signature-of-map (V4889 V4890 V4891) (let A (shen.newpv V4890) (let B (shen.newpv V4890) (do (shen.incinfs) (unify! V4889 (cons (cons A (cons --> (cons B ()))) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons B ())) ()))) ()))) V4890 V4891)))))
 
-(declare mapcan (cons (cons A (cons --> (cons (cons list (cons B ())) ()))) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons B ())) ()))) ()))))
+(defun shen.type-signature-of-mapcan (V4899 V4900 V4901) (let A (shen.newpv V4900) (let B (shen.newpv V4900) (do (shen.incinfs) (unify! V4899 (cons (cons A (cons --> (cons (cons list (cons B ())) ()))) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons B ())) ()))) ()))) V4900 V4901)))))
 
-(declare maxinferences (cons number (cons --> (cons number ()))))
+(defun shen.type-signature-of-maxinferences (V4909 V4910 V4911) (do (shen.incinfs) (unify! V4909 (cons number (cons --> (cons number ()))) V4910 V4911)))
 
-(declare n->string (cons number (cons --> (cons string ()))))
+(defun shen.type-signature-of-n->string (V4919 V4920 V4921) (do (shen.incinfs) (unify! V4919 (cons number (cons --> (cons string ()))) V4920 V4921)))
 
-(declare nl (cons number (cons --> (cons number ()))))
+(defun shen.type-signature-of-nl (V4929 V4930 V4931) (do (shen.incinfs) (unify! V4929 (cons number (cons --> (cons number ()))) V4930 V4931)))
 
-(declare not (cons boolean (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-not (V4939 V4940 V4941) (do (shen.incinfs) (unify! V4939 (cons boolean (cons --> (cons boolean ()))) V4940 V4941)))
 
-(declare nth (cons number (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons A ()))) ()))))
+(defun shen.type-signature-of-nth (V4949 V4950 V4951) (let A (shen.newpv V4950) (do (shen.incinfs) (unify! V4949 (cons number (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons A ()))) ()))) V4950 V4951))))
 
-(declare number? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-number? (V4959 V4960 V4961) (let A (shen.newpv V4960) (do (shen.incinfs) (unify! V4959 (cons A (cons --> (cons boolean ()))) V4960 V4961))))
 
-(declare occurrences (cons A (cons --> (cons (cons B (cons --> (cons number ()))) ()))))
+(defun shen.type-signature-of-occurrences (V4969 V4970 V4971) (let A (shen.newpv V4970) (let B (shen.newpv V4970) (do (shen.incinfs) (unify! V4969 (cons A (cons --> (cons (cons B (cons --> (cons number ()))) ()))) V4970 V4971)))))
 
-(declare occurs-check (cons symbol (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-occurs-check (V4979 V4980 V4981) (do (shen.incinfs) (unify! V4979 (cons symbol (cons --> (cons boolean ()))) V4980 V4981)))
 
-(declare optimise (cons symbol (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-optimise (V4989 V4990 V4991) (do (shen.incinfs) (unify! V4989 (cons symbol (cons --> (cons boolean ()))) V4990 V4991)))
 
-(declare or (cons boolean (cons --> (cons (cons boolean (cons --> (cons boolean ()))) ()))))
+(defun shen.type-signature-of-or (V4999 V5000 V5001) (do (shen.incinfs) (unify! V4999 (cons boolean (cons --> (cons (cons boolean (cons --> (cons boolean ()))) ()))) V5000 V5001)))
 
-(declare os (cons --> (cons string ())))
+(defun shen.type-signature-of-os (V5009 V5010 V5011) (do (shen.incinfs) (unify! V5009 (cons --> (cons string ())) V5010 V5011)))
 
-(declare package? (cons symbol (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-package? (V5019 V5020 V5021) (do (shen.incinfs) (unify! V5019 (cons symbol (cons --> (cons boolean ()))) V5020 V5021)))
 
-(declare port (cons --> (cons string ())))
+(defun shen.type-signature-of-port (V5029 V5030 V5031) (do (shen.incinfs) (unify! V5029 (cons --> (cons string ())) V5030 V5031)))
 
-(declare porters (cons --> (cons string ())))
+(defun shen.type-signature-of-porters (V5039 V5040 V5041) (do (shen.incinfs) (unify! V5039 (cons --> (cons string ())) V5040 V5041)))
 
-(declare pos (cons string (cons --> (cons (cons number (cons --> (cons string ()))) ()))))
+(defun shen.type-signature-of-pos (V5049 V5050 V5051) (do (shen.incinfs) (unify! V5049 (cons string (cons --> (cons (cons number (cons --> (cons string ()))) ()))) V5050 V5051)))
 
-(declare pr (cons string (cons --> (cons (cons (cons stream (cons out ())) (cons --> (cons string ()))) ()))))
+(defun shen.type-signature-of-pr (V5059 V5060 V5061) (do (shen.incinfs) (unify! V5059 (cons string (cons --> (cons (cons (cons stream (cons out ())) (cons --> (cons string ()))) ()))) V5060 V5061)))
 
-(declare print (cons A (cons --> (cons A ()))))
+(defun shen.type-signature-of-print (V5069 V5070 V5071) (let A (shen.newpv V5070) (do (shen.incinfs) (unify! V5069 (cons A (cons --> (cons A ()))) V5070 V5071))))
 
-(declare profile (cons (cons A (cons --> (cons B ()))) (cons --> (cons (cons A (cons --> (cons B ()))) ()))))
+(defun shen.type-signature-of-profile (V5079 V5080 V5081) (let A (shen.newpv V5080) (let B (shen.newpv V5080) (do (shen.incinfs) (unify! V5079 (cons (cons A (cons --> (cons B ()))) (cons --> (cons (cons A (cons --> (cons B ()))) ()))) V5080 V5081)))))
 
-(declare preclude (cons (cons list (cons symbol ())) (cons --> (cons (cons list (cons symbol ())) ()))))
+(defun shen.type-signature-of-preclude (V5089 V5090 V5091) (do (shen.incinfs) (unify! V5089 (cons (cons list (cons symbol ())) (cons --> (cons (cons list (cons symbol ())) ()))) V5090 V5091)))
 
-(declare shen.proc-nl (cons string (cons --> (cons string ()))))
+(defun shen.type-signature-of-shen.proc-nl (V5099 V5100 V5101) (do (shen.incinfs) (unify! V5099 (cons string (cons --> (cons string ()))) V5100 V5101)))
 
-(declare profile-results (cons (cons A (cons --> (cons B ()))) (cons --> (cons (cons (cons A (cons --> (cons B ()))) (cons * (cons number ()))) ()))))
+(defun shen.type-signature-of-profile-results (V5109 V5110 V5111) (let A (shen.newpv V5110) (let B (shen.newpv V5110) (do (shen.incinfs) (unify! V5109 (cons (cons A (cons --> (cons B ()))) (cons --> (cons (cons (cons A (cons --> (cons B ()))) (cons * (cons number ()))) ()))) V5110 V5111)))))
 
-(declare protect (cons symbol (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-protect (V5119 V5120 V5121) (do (shen.incinfs) (unify! V5119 (cons symbol (cons --> (cons symbol ()))) V5120 V5121)))
 
-(declare preclude-all-but (cons (cons list (cons symbol ())) (cons --> (cons (cons list (cons symbol ())) ()))))
+(defun shen.type-signature-of-preclude-all-but (V5129 V5130 V5131) (do (shen.incinfs) (unify! V5129 (cons (cons list (cons symbol ())) (cons --> (cons (cons list (cons symbol ())) ()))) V5130 V5131)))
 
-(declare shen.prhush (cons string (cons --> (cons (cons (cons stream (cons out ())) (cons --> (cons string ()))) ()))))
+(defun shen.type-signature-of-shen.prhush (V5139 V5140 V5141) (do (shen.incinfs) (unify! V5139 (cons string (cons --> (cons (cons (cons stream (cons out ())) (cons --> (cons string ()))) ()))) V5140 V5141)))
 
-(declare ps (cons symbol (cons --> (cons (cons list (cons unit ())) ()))))
+(defun shen.type-signature-of-ps (V5149 V5150 V5151) (do (shen.incinfs) (unify! V5149 (cons symbol (cons --> (cons (cons list (cons unit ())) ()))) V5150 V5151)))
 
-(declare read (cons (cons stream (cons in ())) (cons --> (cons unit ()))))
+(defun shen.type-signature-of-read (V5159 V5160 V5161) (do (shen.incinfs) (unify! V5159 (cons (cons stream (cons in ())) (cons --> (cons unit ()))) V5160 V5161)))
 
-(declare read-byte (cons (cons stream (cons in ())) (cons --> (cons number ()))))
+(defun shen.type-signature-of-read-byte (V5169 V5170 V5171) (do (shen.incinfs) (unify! V5169 (cons (cons stream (cons in ())) (cons --> (cons number ()))) V5170 V5171)))
 
-(declare read-file-as-bytelist (cons string (cons --> (cons (cons list (cons number ())) ()))))
+(defun shen.type-signature-of-read-file-as-bytelist (V5179 V5180 V5181) (do (shen.incinfs) (unify! V5179 (cons string (cons --> (cons (cons list (cons number ())) ()))) V5180 V5181)))
 
-(declare read-file-as-string (cons string (cons --> (cons string ()))))
+(defun shen.type-signature-of-read-file-as-string (V5189 V5190 V5191) (do (shen.incinfs) (unify! V5189 (cons string (cons --> (cons string ()))) V5190 V5191)))
 
-(declare read-file (cons string (cons --> (cons (cons list (cons unit ())) ()))))
+(defun shen.type-signature-of-read-file (V5199 V5200 V5201) (do (shen.incinfs) (unify! V5199 (cons string (cons --> (cons (cons list (cons unit ())) ()))) V5200 V5201)))
 
-(declare read-from-string (cons string (cons --> (cons (cons list (cons unit ())) ()))))
+(defun shen.type-signature-of-read-from-string (V5209 V5210 V5211) (do (shen.incinfs) (unify! V5209 (cons string (cons --> (cons (cons list (cons unit ())) ()))) V5210 V5211)))
 
-(declare release (cons --> (cons string ())))
+(defun shen.type-signature-of-release (V5219 V5220 V5221) (do (shen.incinfs) (unify! V5219 (cons --> (cons string ())) V5220 V5221)))
 
-(declare remove (cons A (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))))
+(defun shen.type-signature-of-remove (V5229 V5230 V5231) (let A (shen.newpv V5230) (do (shen.incinfs) (unify! V5229 (cons A (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))) V5230 V5231))))
 
-(declare reverse (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))))
+(defun shen.type-signature-of-reverse (V5239 V5240 V5241) (let A (shen.newpv V5240) (do (shen.incinfs) (unify! V5239 (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) V5240 V5241))))
 
-(declare simple-error (cons string (cons --> (cons A ()))))
+(defun shen.type-signature-of-simple-error (V5249 V5250 V5251) (let A (shen.newpv V5250) (do (shen.incinfs) (unify! V5249 (cons string (cons --> (cons A ()))) V5250 V5251))))
 
-(declare snd (cons (cons A (cons * (cons B ()))) (cons --> (cons B ()))))
+(defun shen.type-signature-of-snd (V5259 V5260 V5261) (let A (shen.newpv V5260) (let B (shen.newpv V5260) (do (shen.incinfs) (unify! V5259 (cons (cons A (cons * (cons B ()))) (cons --> (cons B ()))) V5260 V5261)))))
 
-(declare specialise (cons symbol (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-specialise (V5269 V5270 V5271) (do (shen.incinfs) (unify! V5269 (cons symbol (cons --> (cons symbol ()))) V5270 V5271)))
 
-(declare spy (cons symbol (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-spy (V5279 V5280 V5281) (do (shen.incinfs) (unify! V5279 (cons symbol (cons --> (cons boolean ()))) V5280 V5281)))
 
-(declare step (cons symbol (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-step (V5289 V5290 V5291) (do (shen.incinfs) (unify! V5289 (cons symbol (cons --> (cons boolean ()))) V5290 V5291)))
 
-(declare stinput (cons --> (cons (cons stream (cons in ())) ())))
+(defun shen.type-signature-of-stinput (V5299 V5300 V5301) (do (shen.incinfs) (unify! V5299 (cons --> (cons (cons stream (cons in ())) ())) V5300 V5301)))
 
-(declare sterror (cons --> (cons (cons stream (cons out ())) ())))
+(defun shen.type-signature-of-sterror (V5309 V5310 V5311) (do (shen.incinfs) (unify! V5309 (cons --> (cons (cons stream (cons out ())) ())) V5310 V5311)))
 
-(declare stoutput (cons --> (cons (cons stream (cons out ())) ())))
+(defun shen.type-signature-of-stoutput (V5319 V5320 V5321) (do (shen.incinfs) (unify! V5319 (cons --> (cons (cons stream (cons out ())) ())) V5320 V5321)))
 
-(declare string? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-string? (V5329 V5330 V5331) (let A (shen.newpv V5330) (do (shen.incinfs) (unify! V5329 (cons A (cons --> (cons boolean ()))) V5330 V5331))))
 
-(declare str (cons A (cons --> (cons string ()))))
+(defun shen.type-signature-of-str (V5339 V5340 V5341) (let A (shen.newpv V5340) (do (shen.incinfs) (unify! V5339 (cons A (cons --> (cons string ()))) V5340 V5341))))
 
-(declare string->n (cons string (cons --> (cons number ()))))
+(defun shen.type-signature-of-string->n (V5349 V5350 V5351) (do (shen.incinfs) (unify! V5349 (cons string (cons --> (cons number ()))) V5350 V5351)))
 
-(declare string->symbol (cons string (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-string->symbol (V5359 V5360 V5361) (do (shen.incinfs) (unify! V5359 (cons string (cons --> (cons symbol ()))) V5360 V5361)))
 
-(declare sum (cons (cons list (cons number ())) (cons --> (cons number ()))))
+(defun shen.type-signature-of-sum (V5369 V5370 V5371) (do (shen.incinfs) (unify! V5369 (cons (cons list (cons number ())) (cons --> (cons number ()))) V5370 V5371)))
 
-(declare symbol? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-symbol? (V5379 V5380 V5381) (let A (shen.newpv V5380) (do (shen.incinfs) (unify! V5379 (cons A (cons --> (cons boolean ()))) V5380 V5381))))
 
-(declare systemf (cons symbol (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-systemf (V5389 V5390 V5391) (do (shen.incinfs) (unify! V5389 (cons symbol (cons --> (cons symbol ()))) V5390 V5391)))
 
-(declare tail (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))))
+(defun shen.type-signature-of-tail (V5399 V5400 V5401) (let A (shen.newpv V5400) (do (shen.incinfs) (unify! V5399 (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) V5400 V5401))))
 
-(declare tlstr (cons string (cons --> (cons string ()))))
+(defun shen.type-signature-of-tlstr (V5409 V5410 V5411) (do (shen.incinfs) (unify! V5409 (cons string (cons --> (cons string ()))) V5410 V5411)))
 
-(declare tlv (cons (cons vector (cons A ())) (cons --> (cons (cons vector (cons A ())) ()))))
+(defun shen.type-signature-of-tlv (V5419 V5420 V5421) (let A (shen.newpv V5420) (do (shen.incinfs) (unify! V5419 (cons (cons vector (cons A ())) (cons --> (cons (cons vector (cons A ())) ()))) V5420 V5421))))
 
-(declare tc (cons symbol (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-tc (V5429 V5430 V5431) (do (shen.incinfs) (unify! V5429 (cons symbol (cons --> (cons boolean ()))) V5430 V5431)))
 
-(declare tc? (cons --> (cons boolean ())))
+(defun shen.type-signature-of-tc? (V5439 V5440 V5441) (do (shen.incinfs) (unify! V5439 (cons --> (cons boolean ())) V5440 V5441)))
 
-(declare thaw (cons (cons lazy (cons A ())) (cons --> (cons A ()))))
+(defun shen.type-signature-of-thaw (V5449 V5450 V5451) (let A (shen.newpv V5450) (do (shen.incinfs) (unify! V5449 (cons (cons lazy (cons A ())) (cons --> (cons A ()))) V5450 V5451))))
 
-(declare track (cons symbol (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-track (V5459 V5460 V5461) (do (shen.incinfs) (unify! V5459 (cons symbol (cons --> (cons symbol ()))) V5460 V5461)))
 
-(declare trap-error (cons A (cons --> (cons (cons (cons exception (cons --> (cons A ()))) (cons --> (cons A ()))) ()))))
+(defun shen.type-signature-of-trap-error (V5469 V5470 V5471) (let A (shen.newpv V5470) (do (shen.incinfs) (unify! V5469 (cons A (cons --> (cons (cons (cons exception (cons --> (cons A ()))) (cons --> (cons A ()))) ()))) V5470 V5471))))
 
-(declare tuple? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-tuple? (V5479 V5480 V5481) (let A (shen.newpv V5480) (do (shen.incinfs) (unify! V5479 (cons A (cons --> (cons boolean ()))) V5480 V5481))))
 
-(declare undefmacro (cons symbol (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-undefmacro (V5489 V5490 V5491) (do (shen.incinfs) (unify! V5489 (cons symbol (cons --> (cons symbol ()))) V5490 V5491)))
 
-(declare union (cons (cons list (cons A ())) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))))
+(defun shen.type-signature-of-union (V5499 V5500 V5501) (let A (shen.newpv V5500) (do (shen.incinfs) (unify! V5499 (cons (cons list (cons A ())) (cons --> (cons (cons (cons list (cons A ())) (cons --> (cons (cons list (cons A ())) ()))) ()))) V5500 V5501))))
 
-(declare unprofile (cons (cons A (cons --> (cons B ()))) (cons --> (cons (cons A (cons --> (cons B ()))) ()))))
+(defun shen.type-signature-of-unprofile (V5509 V5510 V5511) (let A (shen.newpv V5510) (let B (shen.newpv V5510) (do (shen.incinfs) (unify! V5509 (cons (cons A (cons --> (cons B ()))) (cons --> (cons (cons A (cons --> (cons B ()))) ()))) V5510 V5511)))))
 
-(declare untrack (cons symbol (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-untrack (V5519 V5520 V5521) (do (shen.incinfs) (unify! V5519 (cons symbol (cons --> (cons symbol ()))) V5520 V5521)))
 
-(declare unspecialise (cons symbol (cons --> (cons symbol ()))))
+(defun shen.type-signature-of-unspecialise (V5529 V5530 V5531) (do (shen.incinfs) (unify! V5529 (cons symbol (cons --> (cons symbol ()))) V5530 V5531)))
 
-(declare variable? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-variable? (V5539 V5540 V5541) (let A (shen.newpv V5540) (do (shen.incinfs) (unify! V5539 (cons A (cons --> (cons boolean ()))) V5540 V5541))))
 
-(declare vector? (cons A (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-vector? (V5549 V5550 V5551) (let A (shen.newpv V5550) (do (shen.incinfs) (unify! V5549 (cons A (cons --> (cons boolean ()))) V5550 V5551))))
 
-(declare version (cons --> (cons string ())))
+(defun shen.type-signature-of-version (V5559 V5560 V5561) (do (shen.incinfs) (unify! V5559 (cons --> (cons string ())) V5560 V5561)))
 
-(declare write-to-file (cons string (cons --> (cons (cons A (cons --> (cons A ()))) ()))))
+(defun shen.type-signature-of-write-to-file (V5569 V5570 V5571) (let A (shen.newpv V5570) (do (shen.incinfs) (unify! V5569 (cons string (cons --> (cons (cons A (cons --> (cons A ()))) ()))) V5570 V5571))))
 
-(declare write-byte (cons number (cons --> (cons (cons (cons stream (cons out ())) (cons --> (cons number ()))) ()))))
+(defun shen.type-signature-of-write-byte (V5579 V5580 V5581) (do (shen.incinfs) (unify! V5579 (cons number (cons --> (cons (cons (cons stream (cons out ())) (cons --> (cons number ()))) ()))) V5580 V5581)))
 
-(declare y-or-n? (cons string (cons --> (cons boolean ()))))
+(defun shen.type-signature-of-y-or-n? (V5589 V5590 V5591) (do (shen.incinfs) (unify! V5589 (cons string (cons --> (cons boolean ()))) V5590 V5591)))
 
-(declare > (cons number (cons --> (cons (cons number (cons --> (cons boolean ()))) ()))))
+(defun shen.type-signature-of-> (V5599 V5600 V5601) (do (shen.incinfs) (unify! V5599 (cons number (cons --> (cons (cons number (cons --> (cons boolean ()))) ()))) V5600 V5601)))
 
-(declare < (cons number (cons --> (cons (cons number (cons --> (cons boolean ()))) ()))))
+(defun shen.type-signature-of-< (V5609 V5610 V5611) (do (shen.incinfs) (unify! V5609 (cons number (cons --> (cons (cons number (cons --> (cons boolean ()))) ()))) V5610 V5611)))
 
-(declare >= (cons number (cons --> (cons (cons number (cons --> (cons boolean ()))) ()))))
+(defun shen.type-signature-of->= (V5619 V5620 V5621) (do (shen.incinfs) (unify! V5619 (cons number (cons --> (cons (cons number (cons --> (cons boolean ()))) ()))) V5620 V5621)))
 
-(declare <= (cons number (cons --> (cons (cons number (cons --> (cons boolean ()))) ()))))
+(defun shen.type-signature-of-<= (V5629 V5630 V5631) (do (shen.incinfs) (unify! V5629 (cons number (cons --> (cons (cons number (cons --> (cons boolean ()))) ()))) V5630 V5631)))
 
-(declare = (cons A (cons --> (cons (cons A (cons --> (cons boolean ()))) ()))))
+(defun shen.type-signature-of-= (V5639 V5640 V5641) (let A (shen.newpv V5640) (do (shen.incinfs) (unify! V5639 (cons A (cons --> (cons (cons A (cons --> (cons boolean ()))) ()))) V5640 V5641))))
 
-(declare + (cons number (cons --> (cons (cons number (cons --> (cons number ()))) ()))))
+(defun shen.type-signature-of-+ (V5649 V5650 V5651) (do (shen.incinfs) (unify! V5649 (cons number (cons --> (cons (cons number (cons --> (cons number ()))) ()))) V5650 V5651)))
 
-(declare / (cons number (cons --> (cons (cons number (cons --> (cons number ()))) ()))))
+(defun shen.type-signature-of-/ (V5659 V5660 V5661) (do (shen.incinfs) (unify! V5659 (cons number (cons --> (cons (cons number (cons --> (cons number ()))) ()))) V5660 V5661)))
 
-(declare - (cons number (cons --> (cons (cons number (cons --> (cons number ()))) ()))))
+(defun shen.type-signature-of-- (V5669 V5670 V5671) (do (shen.incinfs) (unify! V5669 (cons number (cons --> (cons (cons number (cons --> (cons number ()))) ()))) V5670 V5671)))
 
-(declare * (cons number (cons --> (cons (cons number (cons --> (cons number ()))) ()))))
+(defun shen.type-signature-of-* (V5679 V5680 V5681) (do (shen.incinfs) (unify! V5679 (cons number (cons --> (cons (cons number (cons --> (cons number ()))) ()))) V5680 V5681)))
 
-(declare == (cons A (cons --> (cons (cons B (cons --> (cons boolean ()))) ()))))
+(defun shen.type-signature-of-== (V5689 V5690 V5691) (let A (shen.newpv V5690) (let B (shen.newpv V5690) (do (shen.incinfs) (unify! V5689 (cons A (cons --> (cons (cons B (cons --> (cons boolean ()))) ()))) V5690 V5691)))))
 
 
 

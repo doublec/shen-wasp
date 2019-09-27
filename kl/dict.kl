@@ -1,60 +1,65 @@
-"Copyright (c) 2015, Mark Tarver
+"Copyright (c) 2010-2015, Mark Tarver
 
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
-1. Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
-3. The name of Mark Tarver may not be used to endorse or promote products
-   derived from this software without specific prior written permission.
 
-THIS SOFTWARE IS PROVIDED BY Mark Tarver ''AS IS'' AND ANY
-EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+1. Redistributions of source code must retain the above copyright notice,
+this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+may be used to endorse or promote products derived from this software without
+specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ''AS IS'' AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL Mark Tarver BE LIABLE FOR ANY
-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+"
 
-(defun shen.dict (V3139) (cond ((< V3139 1) (simple-error (cn "invalid initial dict size: " (shen.app V3139 "" shen.s)))) (true (let D (absvector (+ 3 V3139)) (let Tag (address-> D 0 shen.dictionary) (let Capacity (address-> D 1 V3139) (let Count (address-> D 2 0) (let Fill (shen.fillvector D 3 (+ 2 V3139) ()) D))))))))
+(defun shen.dict (V3445) (cond ((< V3445 1) (simple-error (cn "invalid initial dict size: " (shen.app V3445 "" shen.s)))) (true (let D (absvector (+ 3 V3445)) (let Tag (address-> D 0 shen.dictionary) (let Capacity (address-> D 1 V3445) (let Count (address-> D 2 0) (let Fill (shen.fillvector D 3 (+ 2 V3445) ()) D))))))))
 
-(defun shen.dict? (V3141) (and (absvector? V3141) (= (trap-error (<-address V3141 0) (lambda E shen.not-dictionary)) shen.dictionary)))
+(defun shen.dict? (V3447) (and (absvector? V3447) (= (trap-error (<-address V3447 0) (lambda E shen.not-dictionary)) shen.dictionary)))
 
-(defun shen.dict-capacity (V3143) (<-address V3143 1))
+(defun shen.dict-capacity (V3449) (<-address V3449 1))
 
-(defun shen.dict-count (V3145) (<-address V3145 2))
+(defun shen.dict-count (V3451) (<-address V3451 2))
 
-(defun shen.dict-count-> (V3148 V3149) (address-> V3148 2 V3149))
+(defun shen.dict-count-> (V3454 V3455) (address-> V3454 2 V3455))
 
-(defun shen.<-dict-bucket (V3152 V3153) (<-address V3152 (+ 3 V3153)))
+(defun shen.<-dict-bucket (V3458 V3459) (<-address V3458 (+ 3 V3459)))
 
-(defun shen.dict-bucket-> (V3157 V3158 V3159) (address-> V3157 (+ 3 V3158) V3159))
+(defun shen.dict-bucket-> (V3463 V3464 V3465) (address-> V3463 (+ 3 V3464) V3465))
 
-(defun shen.dict-update-count (V3163 V3164 V3165) (let Diff (- (length V3165) (length V3164)) (shen.dict-count-> V3163 (+ Diff (shen.dict-count V3163)))))
+(defun shen.dict-update-count (V3469 V3470 V3471) (let Diff (- (length V3471) (length V3470)) (shen.dict-count-> V3469 (+ Diff (shen.dict-count V3469)))))
 
-(defun shen.dict-> (V3169 V3170 V3171) (let N (hash V3170 (shen.dict-capacity V3169)) (let Bucket (shen.<-dict-bucket V3169 N) (let NewBucket (shen.assoc-set V3170 V3171 Bucket) (let Change (shen.dict-bucket-> V3169 N NewBucket) (let Count (shen.dict-update-count V3169 Bucket NewBucket) V3171))))))
+(defun shen.dict-> (V3475 V3476 V3477) (let N (hash V3476 (shen.dict-capacity V3475)) (let Bucket (shen.<-dict-bucket V3475 N) (let NewBucket (shen.assoc-set V3476 V3477 Bucket) (let Change (shen.dict-bucket-> V3475 N NewBucket) (let Count (shen.dict-update-count V3475 Bucket NewBucket) V3477))))))
 
-(defun shen.<-dict (V3174 V3175) (let N (hash V3175 (shen.dict-capacity V3174)) (let Bucket (shen.<-dict-bucket V3174 N) (let Result (assoc V3175 Bucket) (if (empty? Result) (simple-error (cn "value " (shen.app V3175 " not found in dict
+(defun shen.<-dict (V3480 V3481) (let N (hash V3481 (shen.dict-capacity V3480)) (let Bucket (shen.<-dict-bucket V3480 N) (let Result (assoc V3481 Bucket) (if (empty? Result) (simple-error (cn "value " (shen.app V3481 " not found in dict
 " shen.a))) (tl Result))))))
 
-(defun shen.dict-rm (V3178 V3179) (let N (hash V3179 (shen.dict-capacity V3178)) (let Bucket (shen.<-dict-bucket V3178 N) (let NewBucket (shen.assoc-rm V3179 Bucket) (let Change (shen.dict-bucket-> V3178 N NewBucket) (let Count (shen.dict-update-count V3178 Bucket NewBucket) V3179))))))
+(defun shen.dict-rm (V3484 V3485) (let N (hash V3485 (shen.dict-capacity V3484)) (let Bucket (shen.<-dict-bucket V3484 N) (let NewBucket (shen.assoc-rm V3485 Bucket) (let Change (shen.dict-bucket-> V3484 N NewBucket) (let Count (shen.dict-update-count V3484 Bucket NewBucket) V3485))))))
 
-(defun shen.dict-fold (V3183 V3184 V3185) (let Limit (shen.dict-capacity V3184) (shen.dict-fold-h V3183 V3184 V3185 0 Limit)))
+(defun shen.dict-fold (V3489 V3490 V3491) (let Limit (shen.dict-capacity V3490) (shen.dict-fold-h V3489 V3490 V3491 0 Limit)))
 
-(defun shen.dict-fold-h (V3192 V3193 V3194 V3195 V3196) (cond ((= V3196 V3195) V3194) (true (let B (shen.<-dict-bucket V3193 V3195) (let Acc (shen.bucket-fold V3192 B V3194) (shen.dict-fold-h V3192 V3193 Acc (+ 1 V3195) V3196))))))
+(defun shen.dict-fold-h (V3498 V3499 V3500 V3501 V3502) (cond ((= V3502 V3501) V3500) (true (let B (shen.<-dict-bucket V3499 V3501) (let Acc (shen.bucket-fold V3498 B V3500) (shen.dict-fold-h V3498 V3499 Acc (+ 1 V3501) V3502))))))
 
-(defun shen.bucket-fold (V3200 V3201 V3202) (cond ((= () V3201) V3202) ((and (cons? V3201) (cons? (hd V3201))) (V3200 (hd (hd V3201)) (tl (hd V3201)) (shen.bucket-fold V3200 (tl V3201) V3202))) (true (shen.f_error shen.bucket-fold))))
+(defun shen.bucket-fold (V3506 V3507 V3508) (cond ((= () V3507) V3508) ((and (cons? V3507) (cons? (hd V3507))) (V3506 (hd (hd V3507)) (tl (hd V3507)) (shen.bucket-fold V3506 (tl V3507) V3508))) (true (shen.f_error shen.bucket-fold))))
 
-(defun shen.dict-keys (V3204) (shen.dict-fold (lambda K (lambda _ (lambda Acc (cons K Acc)))) V3204 ()))
+(defun shen.dict-keys (V3510) (shen.dict-fold (lambda K (lambda _ (lambda Acc (cons K Acc)))) V3510 ()))
 
-(defun shen.dict-values (V3206) (shen.dict-fold (lambda _ (lambda V (lambda Acc (cons V Acc)))) V3206 ()))
+(defun shen.dict-values (V3512) (shen.dict-fold (lambda _ (lambda V (lambda Acc (cons V Acc)))) V3512 ()))
 
 
 
