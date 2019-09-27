@@ -1,9 +1,14 @@
 # Change Log
 
-## 0.11 - unreleased
+## 0.11 - 2019-09-28
 
 - Add module declarations to Wasp Lisp files and a `shen-libs.ms` that
   can be imported to load all the compiled Shen code from Lisp.
+- Update to Shen OS Kernel 22.0.
+- Requires a new version of Wasp Lisp, that can handle larger package sizes.
+  Tested with commit 95cbb26 of the Wasp VM from https://github.com/doublec/shen-wasp/
+  in the `shen` branch.
+- Changes command line argument handling to the OS Kernel 22.0 launcher extension.
 
 ## 0.10 - 2018-10-07
 
