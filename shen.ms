@@ -42,4 +42,5 @@
       (else
         (tc-add! argv arg))))
   (kl:set (quote shen-wasp.*argv*) (tc->list argv))
-  (when repl (kl:shen.shen)))
+  (kl:shen.initialise)
+  (when repl (kl:shen.repl)))

@@ -92,6 +92,7 @@
   (define files '("toplevel.kl"
                   "core.kl"
                   "sys.kl"
+                  "dict.kl"
                   "sequent.kl"
                   "yacc.kl"
                   "reader.kl"
@@ -100,10 +101,12 @@
                   "load.kl"
                   "writer.kl"
                   "macros.kl"
-                  "dict.kl"
                   "declarations.kl"
                   "types.kl"
                   "t-star.kl"
+                  "init.kl"
+                  "extension-features.kl"
+                  "extension-launcher.kl"
   ))
   (for-each
     (lambda (file)
@@ -118,6 +121,7 @@
   (define files '("toplevel.kl"
                   "core.kl"
                   "sys.kl"
+                  "dict.kl"
                   "sequent.kl"
                   "yacc.kl"
                   "reader.kl"
@@ -126,10 +130,13 @@
                   "load.kl"
                   "writer.kl"
                   "macros.kl"
-                  "dict.kl"
                   "declarations.kl"
                   "types.kl"
-                  "t-star.kl"))
+                  "t-star.kl"
+                  "init.kl"
+                  "extension-features.kl"
+                  "extension-launcher.kl"
+  ))
   (for-each
     (lambda (file)
       (print "Compiling ") (print file) (print "\n")
@@ -142,6 +149,7 @@
   (define files '("toplevel.kl"
                   "core.kl"
                   "sys.kl"
+                  "dict.kl"
                   "sequent.kl"
                   "yacc.kl"
                   "reader.kl"
@@ -150,10 +158,12 @@
                   "load.kl"
                   "writer.kl"
                   "macros.kl"
-                  "dict.kl"
                   "declarations.kl"
                   "types.kl"
                   "t-star.kl"
+                  "init.kl"
+                  "extension-features.kl"
+                  "extension-launcher.kl"
   ))
   (for-each
     (lambda (file)
