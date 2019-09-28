@@ -11,7 +11,7 @@ Shen can be ported without too much effort to other language systems. Many of th
 
 This port runs on top of [Wasp Lisp](http://bluishcoder.co.nz/tags/waspvm/), a small Lisp system with concurrency and distributed features. Wasp Lisp is not actively developed but the author [Scott Dunlop](https://waspvm.blogspot.com/) monitors the [github repository](https://github.com/swdunlop/WaspVM/) and processes pull requests. Shen requires features that Wasp Lisp doesn't currently support, like real numbers. I maintain a [fork on github](https://github.com/doublec/WaspVM/tree/shen) that implements the features that Shen needs.
 
-The reason for this port is that I use Wasp Lisp in some projects and wanted to try Shen in some of the areas where I use Wasp and [MOSREF](https://bluishcoder.co.nz/2009/11/28/using-wasp-lisp-secure-remote-injection.html). The port is incomplete but is at a state where it works well enough to publish and get feedback.
+The reason for this port is that I use Wasp Lisp in some projects and wanted to try Shen in some of the areas where I use Wasp and [MOSREF](https://bluishcoder.co.nz/2009/11/28/using-wasp-lisp-secure-remote-injection.html).
 
 This port is heavily based on the [Shen Scheme](https://github.com/tizoc/shen-scheme) implementation. Much of the code is ported from Scheme to Wasp Lisp and the structure is kept the same. The license for code I wrote is the same as the Shen Scheme License, BSD3-Clause.
 
@@ -29,21 +29,40 @@ The following compiled binaries are available:
 
 [shen.zip](https://bluishcoder.co.nz/shen/shen.zip). The zip file contains a Windows 64-bit binary, `shen.exe`. It should run on any modern 64-bit Windows system.
 
+Releases and changelog are available on the [Github releases page](https://github.com/doublec/shen-wasp/releases).
+
 ## Usage
 
-Running the `shen` executable without command line arguments will start the REPL. The following command line arguments are available:
+Running the `shen` executable without command line arguments will start the REPL. Command line handling is done via the Shen OS Kernel [launcher extension](https://github.com/Shen-Language/shen-sources/blob/master/doc/extensions/launcher.md). This makes the following command line arguments available:
 
-    Usage: shen [options] [...args...]
-      -h, --help          : Prints help and exits
-      -l, --load <file>   : Loads Shen <file>
-      -e, --eval <string> : Evaluates <string>
-      -r, --repl          : Run the REPL, even if -l or -e are provided
-    Any additional arguments are passed to the Shen system in
-    the variable shen-wasp.*argv*
+    Usage: shen [--version] [--help] <COMMAND> [<ARGS>]
+    
+    commands:
+        repl
+            Launches the interactive REPL.
+            Default action if no command is supplied.
+    
+        script <FILE> [<ARGS>]
+            Runs the script in FILE. *argv* is set to [FILE | ARGS].
+    
+        eval <ARGS>
+            Evaluates expressions and files. ARGS are evaluated from
+            left to right and can be a combination of:
+                -e, --eval <EXPR>
+                    Evaluates EXPR and prints result.
+                -l, --load <FILE>
+                    Reads and evaluates FILE.
+                -q, --quiet
+                    Silences interactive output.
+                -s, --set <KEY> <VALUE>
+                    Evaluates KEY, VALUE and sets as global.
+                -r, --repl
+                    Launches the interactive REPL after evaluating
+                    all the previous expresions.
 
-The command line arguments are processed in order. This allows loading multiple files and calling functions in a single command. For example, building the Shen KLambda files from the [Shen source](https://github.com/Shen-Language/shen-sources):
+For example, building the Shen KLambda files from the [Shen source](https://github.com/Shen-Language/shen-sources):
 
-    $ shen  -l make.shen -e "(make)"
+    $ shen eval -l make.shen -e "(make)"
     sources directory: "sources/"
     klambda directory: "klambda/"
     
@@ -53,16 +72,6 @@ The command line arguments are processed in order. This allows loading multiple 
     compiling yacc
     
     compilation complete.
-
-## Port Specific Features
-
-The Shen variable `shen-wasp.*argv*` contains a list of the command line arguments passed to the Shen executable:
-
-    $ ./shen hello world
-    ...
-    (0-) (value shen-wasp.*argv*)
-    [ "hello" "world" ]
-
 
 ## FFI
 
@@ -112,14 +121,11 @@ Creating a Shen executable can be done with:
     $ chmod +x shen
     $ rlwrap ./shen
     Shen, copyright (C) 2010-2015 Mark Tarver
-    www.shenlanguage.org, Shen 20.1
+    www.shenlanguage.org, Shen 22.0
     running under Wasp Lisp, implementation: WaspVM
-    port 0.7 ported by Chris Double
-    
+    port 0.11 ported by Chris Double
     
     (0-) 
-
-Note that it takes a while to startup as it runs through the Shen and KLambda initialization.
 
 ## Running from the Wasp REPL
 
@@ -127,12 +133,11 @@ Shen can be run and debugged from the Wasp REPL. To import the compiled code and
 
     $ rlwrap wasp
     >> (import "shen-lib")
-    >> (kl:shen.shen)
+    >> (kl:shen.repl)
     Shen, copyright (C) 2010-2015 Mark Tarver
-    www.shenlanguage.org, Shen 20.1
+    www.shenlanguage.org, Shen 22.0
     running under Wasp Lisp, implementation: WaspVM
-    port 0.7 ported by Chris Double
-
+    port 0.11 ported by Chris Double
 
     (0-)
 
@@ -140,7 +145,7 @@ When developing on the compiler it's useful to use `eval-all`. This will load th
 
     >> (import "driver")
     >> (eval-all)
-    >> (kl:shen.shen)
+    >> (kl:shen.repl)
     ...
 
 A single input line of Shen can be entered and run, returning to the Wasp REPL with:
@@ -200,7 +205,7 @@ To generate new KLambda files from the original [Shen source](https://github.com
     $ git clone https://github.com/Shen-Language/shen-sources
     $ cd shen-sources
     $ mkdir klambda
-    $ shen  -l make.shen -e "(make)"
+    $ shen eval -l make.shen -e "(make)"
     sources directory: "sources/"
     klambda directory: "klambda/"
     
@@ -230,7 +235,7 @@ The Shen kernel tests are in the Shen Sources repository. They can be run with:
 
     $ git clone https://github.com/Shen-Language/shen-sources
     $ cd shen-sources/tests
-    $ shen -l README.shen -l tests.shen
+    $ shen eval -l README.shen -l tests.shen
  
 ## Current Port State
 
