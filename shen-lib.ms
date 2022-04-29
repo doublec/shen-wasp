@@ -21,4 +21,5 @@
 (import "compiled/init.kl")
 (import "compiled/extension-features.kl")
 (import "compiled/extension-launcher.kl")
-
+(import "compiled/extension-factorise-defun.kl")
+(import "compiled/extension-programmable-pattern-matching.kl")

@@ -107,6 +107,8 @@
                   "init.kl"
                   "extension-features.kl"
                   "extension-launcher.kl"
+                  "extension-factorise-defun.kl"
+                  "extension-programmable-pattern-matching.kl"
   ))
   (for-each
     (lambda (file)
@@ -136,6 +138,8 @@
                   "init.kl"
                   "extension-features.kl"
                   "extension-launcher.kl"
+                  "extension-factorise-defun.kl"
+                  "extension-programmable-pattern-matching.kl"
   ))
   (for-each
     (lambda (file)
@@ -164,6 +168,8 @@
                   "init.kl"
                   "extension-features.kl"
                   "extension-launcher.kl"
+                  "extension-factorise-defun.kl"
+                  "extension-programmable-pattern-matching.kl"
   ))
   (for-each
     (lambda (file)
@@ -174,8 +180,8 @@
 
 (kl:set (quote *language*) "Wasp Lisp")
 (kl:set (quote *implementation*) "WaspVM")
-(kl:set (quote *port*) "0.11")
-(kl:set (quote *release*) "0.11")
+(kl:set (quote *port*) "0.12")
+(kl:set (quote *release*) "0.12")
 (kl:set (quote *porters*) "Chris Double")
 (kl:set (quote *sterror*) (cons (current-output) #f))
 (kl:set (quote *stinput*) (cons (current-input) (make-string)))

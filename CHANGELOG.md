@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.12 - 2022-04-29
+
+- Update to Shen OS Kernel 22.4
+
 ## 0.11 - 2019-09-28
 
 - Add module declarations to Wasp Lisp files and a `shen-libs.ms` that

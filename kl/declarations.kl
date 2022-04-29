@@ -28,25 +28,25 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 "
 
-(defun shen.initialise_arity_table (V1554) (cond ((= () V1554) ()) ((and (cons? V1554) (cons? (tl V1554))) (let DecArity (put (hd V1554) arity (hd (tl V1554)) (value *property-vector*)) (shen.initialise_arity_table (tl (tl V1554))))) (true (shen.f_error shen.initialise_arity_table))))
+(defun shen.initialise_arity_table (V393) (cond ((= () V393) ()) ((and (cons? V393) (cons? (tl V393))) (let DecArity (put (hd V393) arity (hd (tl V393)) (value *property-vector*)) (shen.initialise_arity_table (tl (tl V393))))) (true (shen.f_error shen.initialise_arity_table))))
 
-(defun arity (V1556) (trap-error (get V1556 arity (value *property-vector*)) (lambda E -1)))
+(defun arity (V395) (trap-error (get V395 arity (value *property-vector*)) (lambda E -1)))
 
-(defun systemf (V1558) (let Shen (intern "shen") (let External (get Shen shen.external-symbols (value *property-vector*)) (let Place (put Shen shen.external-symbols (adjoin V1558 External) (value *property-vector*)) V1558))))
+(defun systemf (V397) (let Shen (intern "shen") (let External (get Shen shen.external-symbols (value *property-vector*)) (let Place (put Shen shen.external-symbols (adjoin V397 External) (value *property-vector*)) V397))))
 
-(defun adjoin (V1561 V1562) (if (element? V1561 V1562) V1562 (cons V1561 V1562)))
+(defun adjoin (V400 V401) (if (element? V400 V401) V401 (cons V400 V401)))
 
-(defun shen.lambda-form-entry (V1564) (cond ((= package V1564) ()) ((= receive V1564) ()) (true (let ArityF (arity V1564) (if (= ArityF -1) () (if (= ArityF 0) () (cons (cons V1564 (eval-kl (shen.lambda-form V1564 ArityF))) ())))))))
+(defun shen.lambda-form-entry (V403) (cond ((= package V403) ()) ((= receive V403) ()) (true (let ArityF (arity V403) (if (= ArityF -1) () (if (= ArityF 0) () (cons (cons V403 (eval-kl (shen.lambda-form V403 ArityF))) ())))))))
 
-(defun shen.lambda-form (V1567 V1568) (cond ((= 0 V1568) V1567) (true (let X (gensym V) (cons lambda (cons X (cons (shen.lambda-form (shen.add-end V1567 X) (- V1568 1)) ())))))))
+(defun shen.lambda-form (V406 V407) (cond ((= 0 V407) V406) (true (let X (gensym V) (cons lambda (cons X (cons (shen.lambda-form (shen.add-end V406 X) (- V407 1)) ())))))))
 
-(defun shen.add-end (V1571 V1572) (cond ((cons? V1571) (append V1571 (cons V1572 ()))) (true (cons V1571 (cons V1572 ())))))
+(defun shen.add-end (V410 V411) (cond ((cons? V410) (append V410 (cons V411 ()))) (true (cons V410 (cons V411 ())))))
 
-(defun shen.set-lambda-form-entry (V1574) (cond ((cons? V1574) (put (hd V1574) shen.lambda-form (tl V1574) (value *property-vector*))) (true (shen.f_error shen.set-lambda-form-entry))))
+(defun shen.set-lambda-form-entry (V413) (cond ((cons? V413) (put (hd V413) shen.lambda-form (tl V413) (value *property-vector*))) (true (shen.f_error shen.set-lambda-form-entry))))
 
-(defun specialise (V1576) (do (set shen.*special* (cons V1576 (value shen.*special*))) V1576))
+(defun specialise (V415) (do (set shen.*special* (cons V415 (value shen.*special*))) V415))
 
-(defun unspecialise (V1578) (do (set shen.*special* (remove V1578 (value shen.*special*))) V1578))
+(defun unspecialise (V417) (do (set shen.*special* (remove V417 (value shen.*special*))) V417))
 
 
 

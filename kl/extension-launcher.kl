@@ -1,12 +1,12 @@
 "Copyright (c) 2019 Bruno Deferrari.
 BSD 3-Clause License: http://opensource.org/licenses/BSD-3-Clause"
 
-(defun shen.x.launcher.quiet-load (V5994) (let Contents (read-file V5994) (map (lambda X (shen.eval-without-macros X)) Contents)))
+(defun shen.x.launcher.quiet-load (V4833) (let Contents (read-file V4833) (map (lambda X (shen.eval-without-macros X)) Contents)))
 
 (defun shen.x.launcher.version-string () (shen.app (version) (cn " " (shen.app (cons port (cons (cons (language) (cons (port) ())) (cons implementation (cons (cons (implementation) (cons (release) ())) ())))) "
 " shen.r)) shen.a))
 
-(defun shen.x.launcher.help-text (V5996) (cn "Usage: " (shen.app V5996 " [--version] [--help] <COMMAND> [<ARGS>]
+(defun shen.x.launcher.help-text (V4835) (cn "Usage: " (shen.app V4835 " [--version] [--help] <COMMAND> [<ARGS>]
 
 commands:
     repl
@@ -31,29 +31,29 @@ commands:
                 Launches the interactive REPL after evaluating
                 all the previous expresions." shen.a)))
 
-(defun shen.x.launcher.execute-all (V5998) (cond ((= () V5998) (cons success ())) ((cons? V5998) (do (thaw (hd V5998)) (shen.x.launcher.execute-all (tl V5998)))) (true (shen.f_error shen.x.launcher.execute-all))))
+(defun shen.x.launcher.execute-all (V4837) (cond ((= () V4837) (cons success ())) ((cons? V4837) (do (thaw (hd V4837)) (shen.x.launcher.execute-all (tl V4837)))) (true (shen.f_error shen.x.launcher.execute-all))))
 
-(defun shen.x.launcher.eval-string (V6000) (eval (head (read-from-string V6000))))
+(defun shen.x.launcher.eval-string (V4839) (eval (head (read-from-string V4839))))
 
-(defun shen.x.launcher.eval-flag-map (V6006) (cond ((= "-e" V6006) "--eval") ((= "-l" V6006) "--load") ((= "-q" V6006) "--quiet") ((= "-s" V6006) "--set") ((= "-r" V6006) "--repl") (true false)))
+(defun shen.x.launcher.eval-flag-map (V4845) (cond ((= "-e" V4845) "--eval") ((= "-l" V4845) "--load") ((= "-q" V4845) "--quiet") ((= "-s" V4845) "--set") ((= "-r" V4845) "--repl") (true false)))
 
-(defun shen.x.launcher.eval-command-h (V6017 V6018) (cond ((= () V6017) (shen.x.launcher.execute-all (reverse V6018))) ((and (cons? V6017) (and (= "--eval" (hd V6017)) (cons? (tl V6017)))) (shen.x.launcher.eval-command-h (tl (tl V6017)) (cons (freeze (shen.prhush (shen.app (shen.x.launcher.eval-string (hd (tl V6017))) "
-" shen.a) (stoutput))) V6018))) ((and (cons? V6017) (and (= "--load" (hd V6017)) (cons? (tl V6017)))) (shen.x.launcher.eval-command-h (tl (tl V6017)) (cons (freeze (load (hd (tl V6017)))) V6018))) ((and (cons? V6017) (= "--quiet" (hd V6017))) (shen.x.launcher.eval-command-h (tl V6017) (cons (freeze (set *hush* true)) V6018))) ((and (cons? V6017) (and (= "--set" (hd V6017)) (and (cons? (tl V6017)) (cons? (tl (tl V6017)))))) (shen.x.launcher.eval-command-h (tl (tl (tl V6017))) (cons (freeze (set (shen.x.launcher.eval-string (hd (tl V6017))) (shen.x.launcher.eval-string (hd (tl (tl V6017)))))) V6018))) ((and (cons? V6017) (= "--repl" (hd V6017))) (do (shen.x.launcher.eval-command-h () V6018) (cons launch-repl (tl V6017)))) (true (let Freeze (freeze (cond ((cons? V6017) (cons error (cons (cn "Invalid eval argument: " (shen.app (hd V6017) "" shen.a)) ()))) (true (shen.f_error shen.x.launcher.eval-command-h)))) (if (cons? V6017) (let Result (let Long (shen.x.launcher.eval-flag-map (hd V6017)) (if (= false Long) (fail) (shen.x.launcher.eval-command-h (cons Long (tl V6017)) V6018))) (if (= Result (fail)) (thaw Freeze) Result)) (thaw Freeze))))))
+(defun shen.x.launcher.eval-command-h (V4856 V4857) (cond ((= () V4856) (shen.x.launcher.execute-all (reverse V4857))) ((and (cons? V4856) (and (= "--eval" (hd V4856)) (cons? (tl V4856)))) (shen.x.launcher.eval-command-h (tl (tl V4856)) (cons (freeze (shen.prhush (shen.app (shen.x.launcher.eval-string (hd (tl V4856))) "
+" shen.a) (stoutput))) V4857))) ((and (cons? V4856) (and (= "--load" (hd V4856)) (cons? (tl V4856)))) (shen.x.launcher.eval-command-h (tl (tl V4856)) (cons (freeze (load (hd (tl V4856)))) V4857))) ((and (cons? V4856) (= "--quiet" (hd V4856))) (shen.x.launcher.eval-command-h (tl V4856) (cons (freeze (set *hush* true)) V4857))) ((and (cons? V4856) (and (= "--set" (hd V4856)) (and (cons? (tl V4856)) (cons? (tl (tl V4856)))))) (shen.x.launcher.eval-command-h (tl (tl (tl V4856))) (cons (freeze (set (shen.x.launcher.eval-string (hd (tl V4856))) (shen.x.launcher.eval-string (hd (tl (tl V4856)))))) V4857))) ((and (cons? V4856) (= "--repl" (hd V4856))) (do (shen.x.launcher.eval-command-h () V4857) (cons launch-repl (tl V4856)))) (true (let Freeze (freeze (cond ((cons? V4856) (cons error (cons (cn "Invalid eval argument: " (shen.app (hd V4856) "" shen.a)) ()))) (true (shen.f_error shen.x.launcher.eval-command-h)))) (if (cons? V4856) (let Result (let Long (shen.x.launcher.eval-flag-map (hd V4856)) (if (= false Long) (fail) (shen.x.launcher.eval-command-h (cons Long (tl V4856)) V4857))) (if (= Result (fail)) (thaw Freeze) Result)) (thaw Freeze))))))
 
-(defun shen.x.launcher.eval-command (V6020) (shen.x.launcher.eval-command-h V6020 ()))
+(defun shen.x.launcher.eval-command (V4859) (shen.x.launcher.eval-command-h V4859 ()))
 
-(defun shen.x.launcher.script-command (V6023 V6024) (do (set *argv* (cons V6023 V6024)) (do (shen.x.launcher.quiet-load V6023) (cons success ()))))
+(defun shen.x.launcher.script-command (V4862 V4863) (do (set *argv* (cons V4862 V4863)) (do (shen.x.launcher.quiet-load V4862) (cons success ()))))
 
-(defun shen.x.launcher.launch-shen (V6026) (cond ((and (cons? V6026) (= () (tl V6026))) (cons launch-repl ())) ((and (cons? V6026) (and (cons? (tl V6026)) (= "--help" (hd (tl V6026))))) (cons show-help (cons (shen.x.launcher.help-text (hd V6026)) ()))) ((and (cons? V6026) (and (cons? (tl V6026)) (= "--version" (hd (tl V6026))))) (cons success (cons (shen.x.launcher.version-string) ()))) ((and (cons? V6026) (and (cons? (tl V6026)) (= "repl" (hd (tl V6026))))) (cons launch-repl (tl (tl V6026)))) ((and (cons? V6026) (and (cons? (tl V6026)) (and (= "script" (hd (tl V6026))) (cons? (tl (tl V6026)))))) (shen.x.launcher.script-command (hd (tl (tl V6026))) (tl (tl (tl V6026))))) ((and (cons? V6026) (and (cons? (tl V6026)) (= "eval" (hd (tl V6026))))) (shen.x.launcher.eval-command (tl (tl V6026)))) ((and (cons? V6026) (cons? (tl V6026))) (cons unknown-arguments V6026)) (true (shen.f_error shen.x.launcher.launch-shen))))
+(defun shen.x.launcher.launch-shen (V4865) (cond ((and (cons? V4865) (= () (tl V4865))) (cons launch-repl ())) ((and (cons? V4865) (and (cons? (tl V4865)) (= "--help" (hd (tl V4865))))) (cons show-help (cons (shen.x.launcher.help-text (hd V4865)) ()))) ((and (cons? V4865) (and (cons? (tl V4865)) (= "--version" (hd (tl V4865))))) (cons success (cons (shen.x.launcher.version-string) ()))) ((and (cons? V4865) (and (cons? (tl V4865)) (= "repl" (hd (tl V4865))))) (cons launch-repl (tl (tl V4865)))) ((and (cons? V4865) (and (cons? (tl V4865)) (and (= "script" (hd (tl V4865))) (cons? (tl (tl V4865)))))) (shen.x.launcher.script-command (hd (tl (tl V4865))) (tl (tl (tl V4865))))) ((and (cons? V4865) (and (cons? (tl V4865)) (= "eval" (hd (tl V4865))))) (shen.x.launcher.eval-command (tl (tl V4865)))) ((and (cons? V4865) (cons? (tl V4865))) (cons unknown-arguments V4865)) (true (shen.f_error shen.x.launcher.launch-shen))))
 
-(defun shen.x.launcher.default-handle-result (V6030) (cond ((and (cons? V6030) (and (= success (hd V6030)) (= () (tl V6030)))) shen.x.launcher.done) ((and (cons? V6030) (and (= success (hd V6030)) (and (cons? (tl V6030)) (= () (tl (tl V6030)))))) (shen.prhush (shen.app (hd (tl V6030)) "
-" shen.a) (stoutput))) ((and (cons? V6030) (and (= error (hd V6030)) (and (cons? (tl V6030)) (= () (tl (tl V6030)))))) (shen.prhush (cn "ERROR: " (shen.app (hd (tl V6030)) "
-" shen.a)) (stoutput))) ((and (cons? V6030) (= launch-repl (hd V6030))) (shen.repl)) ((and (cons? V6030) (and (= show-help (hd V6030)) (and (cons? (tl V6030)) (= () (tl (tl V6030)))))) (shen.prhush (shen.app (hd (tl V6030)) "
-" shen.a) (stoutput))) ((and (cons? V6030) (and (= unknown-arguments (hd V6030)) (and (cons? (tl V6030)) (cons? (tl (tl V6030)))))) (shen.prhush (cn "ERROR: Invalid argument: " (shen.app (hd (tl (tl V6030))) (cn "
-Try `" (shen.app (hd (tl V6030)) " --help' for more information.
+(defun shen.x.launcher.default-handle-result (V4869) (cond ((and (cons? V4869) (and (= success (hd V4869)) (= () (tl V4869)))) shen.x.launcher.done) ((and (cons? V4869) (and (= success (hd V4869)) (and (cons? (tl V4869)) (= () (tl (tl V4869)))))) (shen.prhush (shen.app (hd (tl V4869)) "
+" shen.a) (stoutput))) ((and (cons? V4869) (and (= error (hd V4869)) (and (cons? (tl V4869)) (= () (tl (tl V4869)))))) (shen.prhush (cn "ERROR: " (shen.app (hd (tl V4869)) "
+" shen.a)) (stoutput))) ((and (cons? V4869) (= launch-repl (hd V4869))) (shen.repl)) ((and (cons? V4869) (and (= show-help (hd V4869)) (and (cons? (tl V4869)) (= () (tl (tl V4869)))))) (shen.prhush (shen.app (hd (tl V4869)) "
+" shen.a) (stoutput))) ((and (cons? V4869) (and (= unknown-arguments (hd V4869)) (and (cons? (tl V4869)) (cons? (tl (tl V4869)))))) (shen.prhush (cn "ERROR: Invalid argument: " (shen.app (hd (tl (tl V4869))) (cn "
+Try `" (shen.app (hd (tl V4869)) " --help' for more information.
 " shen.a)) shen.a)) (stoutput))) (true (shen.f_error shen.x.launcher.default-handle-result))))
 
-(defun shen.x.launcher.main (V6032) (shen.x.launcher.default-handle-result (shen.x.launcher.launch-shen V6032)))
+(defun shen.x.launcher.main (V4871) (shen.x.launcher.default-handle-result (shen.x.launcher.launch-shen V4871)))
 
 
 
